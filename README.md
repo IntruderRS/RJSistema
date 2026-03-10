@@ -15,12 +15,12 @@
     </ul>
 
     <a href="https://vetores.org/java-svg-logo/">
-        <img src="https://vetores.org/wp-content/uploads/java.png" width="154" height="154" alt="LinkedIn" />
-    </a>
+      <img src="https://vetores.org/wp-content/uploads/java.png" width="154" height="154" alt="LinkedIn" />
+   </a>
 
-    <a href="https://vetores.org/java-svg-logo/">
-        <img src="https://vetores.org/wp-content/uploads/mysql.png" width="154" height="154" alt="LinkedIn" />
-    </a>
+   <a href="https://vetores.org/java-svg-logo/">
+      <img src="https://vetores.org/wp-content/uploads/mysql.png" width="154" height="154" alt="LinkedIn" />
+   </a>
 
 </body>
 
