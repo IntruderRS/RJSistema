@@ -8,6 +8,7 @@ Content\TelaCadastros.class
 Content\TelaRelatorios.class
 br\com\sistemarj\rjsistema\RJSistema.class
 Dashboard\MainDashboard.class
+br\com\cenaflix\podcast\persistencia\JPAUtil.class
 Dashboard\MainDashboard$1.class
 Dashboard\MainDashboard$5.class
 Content\TelaHome.class
