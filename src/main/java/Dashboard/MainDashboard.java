@@ -9,12 +9,12 @@ import java.util.List;
 
 public class MainDashboard extends javax.swing.JFrame {
 
-    // private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainDashboard.class.getName());
     TelaHome a = new TelaHome();
     TelaPedidos b = new TelaPedidos();
-    TelaCadastros c = new TelaCadastros();
-    TelaRelatorios d = new TelaRelatorios();
-    TelaAdministracao e = new TelaAdministracao();
+    CadastrosFornecedores c = new CadastrosFornecedores();
+    CadastroProdutos d = new CadastroProdutos();
+    CadastroClientes e = new CadastroClientes();
+    ListaFornecedores f = new ListaFornecedores();
     
     public class MyForm extends javax.swing.JFrame {
 
@@ -29,9 +29,9 @@ public class MainDashboard extends javax.swing.JFrame {
     }
 
     private void inicializarBotoes() {
-        botoes.add(btnCadastros);
-        botoes.add(btnRelatorios);
-        botoes.add(btnAdministracao);
+        botoes.add(btnFornecedores);
+        botoes.add(btnProdutos);
+        botoes.add(btnClientes);
         
         // Esconde ou joga para fora da tela inicialmente
         for (javax.swing.JButton btn : botoes) {
@@ -76,6 +76,7 @@ public class MainDashboard extends javax.swing.JFrame {
         main.add(c);
         main.add(d);
         main.add(e);
+        main.add(f);
 
         
         a.setVisible(true);
@@ -83,6 +84,7 @@ public class MainDashboard extends javax.swing.JFrame {
         c.setVisible(false);
         d.setVisible(false);
         e.setVisible(false);
+        f.setVisible(false);
        
     }
 
@@ -93,13 +95,17 @@ public class MainDashboard extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnHome = new javax.swing.JButton();
         btnPedidos = new javax.swing.JButton();
-        btnCadastros = new javax.swing.JButton();
-        btnRelatorios = new javax.swing.JButton();
-        btnAdministracao = new javax.swing.JButton();
+        btnFornecedores = new javax.swing.JButton();
+        btnProdutos = new javax.swing.JButton();
+        btnClientes = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        CADASTROS = new javax.swing.JLabel();
+        CADASTROS1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         main = new javax.swing.JLayeredPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 700));
+        setPreferredSize(new java.awt.Dimension(1200, 800));
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
         jPanel2.setPreferredSize(new java.awt.Dimension(150, 551));
@@ -118,24 +124,49 @@ public class MainDashboard extends javax.swing.JFrame {
             }
         });
 
-        btnCadastros.setText("Cadastros");
-        btnCadastros.addActionListener(new java.awt.event.ActionListener() {
+        btnFornecedores.setText("Fornecedores");
+        btnFornecedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrosActionPerformed(evt);
+                btnFornecedoresActionPerformed(evt);
             }
         });
 
-        btnRelatorios.setText("Relatorios");
-        btnRelatorios.addActionListener(new java.awt.event.ActionListener() {
+        btnProdutos.setText("Produtos");
+        btnProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRelatoriosActionPerformed(evt);
+                btnProdutosActionPerformed(evt);
             }
         });
 
-        btnAdministracao.setText("Administração");
-        btnAdministracao.addActionListener(new java.awt.event.ActionListener() {
+        btnClientes.setText("Clientes");
+        btnClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdministracaoActionPerformed(evt);
+                btnClientesActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("MENU DE NAVEGAÇÃO");
+
+        CADASTROS.setBackground(new java.awt.Color(153, 153, 153));
+        CADASTROS.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        CADASTROS.setForeground(new java.awt.Color(0, 0, 0));
+        CADASTROS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CADASTROS.setText("Cadastros");
+
+        CADASTROS1.setBackground(new java.awt.Color(153, 153, 153));
+        CADASTROS1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        CADASTROS1.setForeground(new java.awt.Color(0, 0, 0));
+        CADASTROS1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CADASTROS1.setText("Relatórios");
+
+        jButton1.setText("Lista Fornecedores");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -145,24 +176,36 @@ public class MainDashboard extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnPedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnCadastros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnAdministracao, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+            .addComponent(btnFornecedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(CADASTROS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(CADASTROS1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnHome)
-                .addGap(83, 83, 83)
+                .addGap(61, 61, 61)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPedidos)
+                .addGap(10, 10, 10)
+                .addComponent(CADASTROS)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCadastros)
+                .addComponent(btnFornecedores)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRelatorios)
+                .addComponent(btnProdutos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAdministracao)
-                .addContainerGap(329, Short.MAX_VALUE))
+                .addComponent(btnClientes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CADASTROS1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(252, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_START);
@@ -180,6 +223,7 @@ public class MainDashboard extends javax.swing.JFrame {
         c.setVisible(false);
         d.setVisible(false);
         e.setVisible(false);
+        f.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
@@ -188,31 +232,44 @@ public class MainDashboard extends javax.swing.JFrame {
         c.setVisible(false);
         d.setVisible(false);
         e.setVisible(false);
+        f.setVisible(false);
     }//GEN-LAST:event_btnPedidosActionPerformed
 
-    private void btnCadastrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrosActionPerformed
+    private void btnFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFornecedoresActionPerformed
         a.setVisible(false);
         b.setVisible(false);
         c.setVisible(true);
         d.setVisible(false);
         e.setVisible(false);
-    }//GEN-LAST:event_btnCadastrosActionPerformed
+        f.setVisible(false);
+    }//GEN-LAST:event_btnFornecedoresActionPerformed
 
-    private void btnRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatoriosActionPerformed
+    private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
         a.setVisible(false);
         b.setVisible(false);
         c.setVisible(false);
         d.setVisible(true);
         e.setVisible(false);
-    }//GEN-LAST:event_btnRelatoriosActionPerformed
+        f.setVisible(false);
+    }//GEN-LAST:event_btnProdutosActionPerformed
 
-    private void btnAdministracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministracaoActionPerformed
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         a.setVisible(false);
         b.setVisible(false);
         c.setVisible(false);
         d.setVisible(false);
         e.setVisible(true);
-    }//GEN-LAST:event_btnAdministracaoActionPerformed
+        f.setVisible(false);
+    }//GEN-LAST:event_btnClientesActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        a.setVisible(false);
+        b.setVisible(false);
+        c.setVisible(false);
+        d.setVisible(false);
+        e.setVisible(false);
+        f.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
 
@@ -224,11 +281,15 @@ public class MainDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdministracao;
-    private javax.swing.JButton btnCadastros;
+    private javax.swing.JLabel CADASTROS;
+    private javax.swing.JLabel CADASTROS1;
+    private javax.swing.JButton btnClientes;
+    private javax.swing.JButton btnFornecedores;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnPedidos;
-    private javax.swing.JButton btnRelatorios;
+    private javax.swing.JButton btnProdutos;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLayeredPane main;
     // End of variables declaration//GEN-END:variables
