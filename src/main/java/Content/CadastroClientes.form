@@ -55,25 +55,25 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtCNPJCPF" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
+                                  <Component id="txtRua" alignment="0" min="-2" pref="324" max="-2" attributes="0"/>
+                                  <Component id="txtWhatsapp" alignment="0" min="-2" pref="284" max="-2" attributes="0"/>
+                                  <Component id="txtID" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                                  <Component id="txtCEP" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
+                                  <Component id="txtCidade" alignment="0" min="-2" pref="324" max="-2" attributes="0"/>
+                                  <Component id="txtEstado" alignment="0" min="-2" pref="324" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="278" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtRazaoSocialNome" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtCidade" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtEstado" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtAtividadeProfissão" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtNomeFantasia" alignment="0" min="-2" pref="596" max="-2" attributes="0"/>
-                                          <Component id="txtCNPJCPF" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
-                                          <Component id="txtRua" alignment="0" min="-2" pref="324" max="-2" attributes="0"/>
-                                          <Component id="txtWhatsapp" alignment="0" min="-2" pref="284" max="-2" attributes="0"/>
-                                          <Component id="txtID" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
-                                          <Component id="txtCEP" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="txtRazaoSocialNome" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtNomeFantasia" alignment="1" max="32767" attributes="0"/>
                                   <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -113,7 +113,6 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtRazaoSocialNome" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -156,9 +155,10 @@
                           <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtCEP" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="txtAtividadeProfissão" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">

@@ -36,42 +36,44 @@
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="btnPesquisar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
-                      <Component id="btnLimpar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
-                      <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jScrollPane1" min="-2" pref="778" max="-2" attributes="0"/>
                   <Component id="txtNome" alignment="0" min="-2" pref="457" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                       <Component id="txtCategoria" alignment="0" pref="320" max="32767" attributes="0"/>
                       <Component id="txtFornecedor" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="txtDimensoes" alignment="0" pref="127" max="32767" attributes="0"/>
-                          <Component id="txtPeso" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtQuantidade" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtValorVenda" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtPorcentagemLucro" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtValorCusto" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtVencimento" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtCodigoBarras" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtNCM" min="-2" pref="163" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txtLote" min="-2" pref="173" max="-2" attributes="0"/>
-                  </Group>
                   <Component id="txtID" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="btnPesquisar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
+                          <Component id="btnLimpar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="txtDimensoes" alignment="0" pref="127" max="32767" attributes="0"/>
+                              <Component id="txtPeso" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtQuantidade" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtValorVenda" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtPorcentagemLucro" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtValorCusto" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtVencimento" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtCodigoBarras" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="txtNCM" min="-2" pref="163" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="txtLote" min="-2" pref="173" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace pref="96" max="32767" attributes="0"/>
+              <EmptySpace pref="43" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
