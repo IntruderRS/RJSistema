@@ -17,6 +17,11 @@ public class MainDashboard extends javax.swing.JFrame {
     ListaFornecedores f = new ListaFornecedores();
     ListaProdutos g = new ListaProdutos();
     ListaClientes h = new ListaClientes();
+    CadastroCategoria i = new CadastroCategoria();
+    ListaPedidos j = new ListaPedidos();
+    Usuarios k = new Usuarios();
+    Permissoes l = new Permissoes();
+    
     
     public class MyForm extends javax.swing.JFrame {
 
@@ -81,6 +86,10 @@ public class MainDashboard extends javax.swing.JFrame {
         main.add(f);
         main.add(g);
         main.add(h);
+        main.add(i);
+        main.add(j);
+        main.add(k);
+        main.add(l);
 
         
         a.setVisible(true);
@@ -91,6 +100,10 @@ public class MainDashboard extends javax.swing.JFrame {
         f.setVisible(false);
         g.setVisible(false);
         h.setVisible(false);
+        i.setVisible(false);
+        j.setVisible(false);
+        k.setVisible(false);
+        l.setVisible(false);
        
     }
 
@@ -110,6 +123,11 @@ public class MainDashboard extends javax.swing.JFrame {
         btnListaFornecedores = new javax.swing.JButton();
         btnListaProdutos = new javax.swing.JButton();
         btnListaClientes = new javax.swing.JButton();
+        btnCategoria = new javax.swing.JButton();
+        btnListaPedidos = new javax.swing.JButton();
+        CADASTROS2 = new javax.swing.JLabel();
+        btnUsuarios = new javax.swing.JButton();
+        btnPermissoes = new javax.swing.JButton();
         main = new javax.swing.JLayeredPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -193,6 +211,40 @@ public class MainDashboard extends javax.swing.JFrame {
             }
         });
 
+        btnCategoria.setText("Categoria");
+        btnCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCategoriaActionPerformed(evt);
+            }
+        });
+
+        btnListaPedidos.setText("Lista Pedidos");
+        btnListaPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListaPedidosActionPerformed(evt);
+            }
+        });
+
+        CADASTROS2.setBackground(new java.awt.Color(153, 153, 153));
+        CADASTROS2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        CADASTROS2.setForeground(new java.awt.Color(0, 0, 0));
+        CADASTROS2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CADASTROS2.setText("Administração");
+
+        btnUsuarios.setText("Usuários");
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuariosActionPerformed(evt);
+            }
+        });
+
+        btnPermissoes.setText("Permissões");
+        btnPermissoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPermissoesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -208,17 +260,22 @@ public class MainDashboard extends javax.swing.JFrame {
             .addComponent(btnListaFornecedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnListaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnListaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnListaPedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(CADASTROS2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnPermissoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnHome)
-                .addGap(61, 61, 61)
+                .addGap(65, 65, 65)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPedidos)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CADASTROS)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnFornecedores)
@@ -227,6 +284,8 @@ public class MainDashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnClientes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCategoria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CADASTROS1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnListaFornecedores)
@@ -234,7 +293,15 @@ public class MainDashboard extends javax.swing.JFrame {
                 .addComponent(btnListaProdutos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnListaClientes)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnListaPedidos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CADASTROS2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnUsuarios)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPermissoes)
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_START);
@@ -255,6 +322,10 @@ public class MainDashboard extends javax.swing.JFrame {
         f.setVisible(false);
         g.setVisible(false);
         h.setVisible(false);
+        i.setVisible(false);
+        j.setVisible(false);
+        k.setVisible(false);
+        l.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
@@ -266,6 +337,10 @@ public class MainDashboard extends javax.swing.JFrame {
         f.setVisible(false);
         g.setVisible(false);
         h.setVisible(false);
+        i.setVisible(false);
+        j.setVisible(false);
+        k.setVisible(false);
+        l.setVisible(false);
     }//GEN-LAST:event_btnPedidosActionPerformed
 
     private void btnFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFornecedoresActionPerformed
@@ -277,6 +352,10 @@ public class MainDashboard extends javax.swing.JFrame {
         f.setVisible(false);
         g.setVisible(false);
         h.setVisible(false);
+        i.setVisible(false);
+        j.setVisible(false);
+        k.setVisible(false);
+        l.setVisible(false);
     }//GEN-LAST:event_btnFornecedoresActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
@@ -288,6 +367,10 @@ public class MainDashboard extends javax.swing.JFrame {
         f.setVisible(false);
         g.setVisible(false);
         h.setVisible(false);
+        i.setVisible(false);
+        j.setVisible(false);
+        k.setVisible(false);
+        l.setVisible(false);
     }//GEN-LAST:event_btnProdutosActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
@@ -299,6 +382,10 @@ public class MainDashboard extends javax.swing.JFrame {
         f.setVisible(false);
         g.setVisible(false);
         h.setVisible(false);
+        i.setVisible(false);
+        j.setVisible(false);
+        k.setVisible(false);
+        l.setVisible(false);
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnListaFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaFornecedoresActionPerformed
@@ -310,6 +397,10 @@ public class MainDashboard extends javax.swing.JFrame {
         f.setVisible(true);
         g.setVisible(false);
         h.setVisible(false);
+        i.setVisible(false);
+        j.setVisible(false);
+        k.setVisible(false);
+        l.setVisible(false);
     }//GEN-LAST:event_btnListaFornecedoresActionPerformed
 
     private void btnListaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaProdutosActionPerformed
@@ -321,6 +412,10 @@ public class MainDashboard extends javax.swing.JFrame {
         f.setVisible(false);
         g.setVisible(true);
         h.setVisible(false);
+        i.setVisible(false);
+        j.setVisible(false);
+        k.setVisible(false);
+        l.setVisible(false);
     }//GEN-LAST:event_btnListaProdutosActionPerformed
 
     private void btnListaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaClientesActionPerformed
@@ -332,7 +427,71 @@ public class MainDashboard extends javax.swing.JFrame {
         f.setVisible(false);
         g.setVisible(false);
         h.setVisible(true);
+        i.setVisible(false);
+        j.setVisible(false);
+        k.setVisible(false);
+        l.setVisible(false);
     }//GEN-LAST:event_btnListaClientesActionPerformed
+
+    private void btnCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaActionPerformed
+        a.setVisible(false);
+        b.setVisible(false);
+        c.setVisible(false);
+        d.setVisible(false);
+        e.setVisible(false);
+        f.setVisible(false);
+        g.setVisible(false);
+        h.setVisible(false);
+        i.setVisible(true);
+        j.setVisible(false);
+        k.setVisible(false);
+        l.setVisible(false);
+    }//GEN-LAST:event_btnCategoriaActionPerformed
+
+    private void btnListaPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaPedidosActionPerformed
+        a.setVisible(false);
+        b.setVisible(false);
+        c.setVisible(false);
+        d.setVisible(false);
+        e.setVisible(false);
+        f.setVisible(false);
+        g.setVisible(false);
+        h.setVisible(false);
+        i.setVisible(false);
+        j.setVisible(true);
+        k.setVisible(false);
+        l.setVisible(false);
+    }//GEN-LAST:event_btnListaPedidosActionPerformed
+
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+        a.setVisible(false);
+        b.setVisible(false);
+        c.setVisible(false);
+        d.setVisible(false);
+        e.setVisible(false);
+        f.setVisible(false);
+        g.setVisible(false);
+        h.setVisible(false);
+        i.setVisible(false);
+        j.setVisible(false);
+        k.setVisible(true);
+        l.setVisible(false);
+    }//GEN-LAST:event_btnUsuariosActionPerformed
+
+    private void btnPermissoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPermissoesActionPerformed
+        a.setVisible(false);
+        b.setVisible(false);
+        c.setVisible(false);
+        d.setVisible(false);
+        e.setVisible(false);
+        f.setVisible(false);
+        g.setVisible(false);
+        h.setVisible(false);
+        i.setVisible(false);
+        j.setVisible(false);
+        k.setVisible(false);
+        l.setVisible(true);
+    }//GEN-LAST:event_btnPermissoesActionPerformed
 
     public static void main(String args[]) {
 
@@ -346,14 +505,19 @@ public class MainDashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CADASTROS;
     private javax.swing.JLabel CADASTROS1;
+    private javax.swing.JLabel CADASTROS2;
+    private javax.swing.JButton btnCategoria;
     private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnFornecedores;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnListaClientes;
     private javax.swing.JButton btnListaFornecedores;
+    private javax.swing.JButton btnListaPedidos;
     private javax.swing.JButton btnListaProdutos;
     private javax.swing.JButton btnPedidos;
+    private javax.swing.JButton btnPermissoes;
     private javax.swing.JButton btnProdutos;
+    private javax.swing.JButton btnUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLayeredPane main;
