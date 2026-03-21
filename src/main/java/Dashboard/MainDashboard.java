@@ -21,63 +21,81 @@ public class MainDashboard extends javax.swing.JFrame {
     ListaPedidos j = new ListaPedidos();
     Usuarios k = new Usuarios();
     Permissoes l = new Permissoes();
-    
-    
+
     public class MyForm extends javax.swing.JFrame {
 
-    // Lista para armazenar os botões
-    private List<javax.swing.JButton> botoes = new ArrayList<>();
-    private int yPos = 50; // Posição Y inicial
+        // Lista para armazenar os botões
+        private List<javax.swing.JButton> botoes = new ArrayList<>();
+        private int yPos = 50; // Posição Y inicial
 
-    public MyForm() {
-        initComponents();
-        // Inicializa a posição dos botões (ex: fora da tela à esquerda)
-        inicializarBotoes();
-    }
-
-    private void inicializarBotoes() {
-        botoes.add(btnFornecedores);
-        botoes.add(btnProdutos);
-        botoes.add(btnClientes);
-        
-        // Esconde ou joga para fora da tela inicialmente
-        for (javax.swing.JButton btn : botoes) {
-            btn.setLocation(-100, btn.getY());
+        public MyForm() {
+            initComponents();
+            inicializarBotoes();
         }
-    }
 
-    // Ação do botão que inicia a cascata
-    private void iniciarCascata() {
-        final int delay = 100; // milissegundos entre cada botão
-        final int finalX = 50; // posição final X
-        
-        for (int i = 0; i < botoes.size(); i++) {
-            final javax.swing.JButton btn = botoes.get(i);
-            final int index = i;
-            
-            // Timer para cada botão com atraso acumulado
-            Timer timer = new Timer(delay * index, new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    // Simples animação de deslizar
-                    new Thread(() -> {
-                        for (int pos = -100; pos <= finalX; pos += 10) {
-                            btn.setLocation(pos, btn.getY());
-                            try { Thread.sleep(10); } catch (Exception ex) {}
-                        }
-                    }).start();
-                }
-            });
-            timer.setRepeats(false);
-            timer.start();
+        private void inicializarBotoes() {
+            botoes.add(btnFornecedores);
+            botoes.add(btnProdutos);
+            botoes.add(btnClientes);
+
+            // Esconde ou joga para fora da tela inicialmente
+            for (javax.swing.JButton btn : botoes) {
+                btn.setLocation(-100, btn.getY());
+            }
         }
-    }
+
+        // Ação do botão que inicia a cascata
+        private void iniciarCascata() {
+            final int delay = 100; // milissegundos entre cada botão
+            final int finalX = 50; // posição final X
+
+            for (int i = 0; i < botoes.size(); i++) {
+                final javax.swing.JButton btn = botoes.get(i);
+                final int index = i;
+
+                // Timer para cada botão com atraso acumulado
+                Timer timer = new Timer(delay * index, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        // Simples animação de deslizar
+                        new Thread(() -> {
+                            for (int pos = -100; pos <= finalX; pos += 10) {
+                                btn.setLocation(pos, btn.getY());
+                                try {
+                                    Thread.sleep(10);
+                                } catch (Exception ex) {
+                                }
+                            }
+                        }).start();
+                    }
+                });
+                timer.setRepeats(false);
+                timer.start();
+            }
+        }
     }
 
     public MainDashboard() {
         initComponents();
         this.pack();
-        
+
+        java.awt.Color corHover = new java.awt.Color(51, 51, 51); // Cinza Escuro
+        java.awt.Color corPadrao = new java.awt.Color(30, 101, 165); // Volta cor normal
+
+        //Lista dos botões:
+        configurarEfeitoBotao(btnPedidos, corHover, corPadrao);
+        configurarEfeitoBotao(btnCategoria, corHover, corPadrao);
+        configurarEfeitoBotao(btnClientes, corHover, corPadrao);
+        configurarEfeitoBotao(btnFornecedores, corHover, corPadrao);
+        //configurarEfeitoBotao(btnHome, corHover, corPadrao);
+        configurarEfeitoBotao(btnPermissoes, corHover, corPadrao);
+        configurarEfeitoBotao(btnProdutos, corHover, corPadrao);
+        configurarEfeitoBotao(btnUsuarios, corHover, corPadrao);
+        configurarEfeitoBotao(btnListaClientes, corHover, corPadrao);
+        configurarEfeitoBotao(btnListaFornecedores, corHover, corPadrao);
+        configurarEfeitoBotao(btnListaPedidos, corHover, corPadrao);
+        configurarEfeitoBotao(btnListaProdutos, corHover, corPadrao);
+
         main.add(a);
         main.add(b);
         main.add(c);
@@ -91,7 +109,6 @@ public class MainDashboard extends javax.swing.JFrame {
         main.add(k);
         main.add(l);
 
-        
         a.setVisible(true);
         b.setVisible(false);
         c.setVisible(false);
@@ -104,7 +121,7 @@ public class MainDashboard extends javax.swing.JFrame {
         j.setVisible(false);
         k.setVisible(false);
         l.setVisible(false);
-       
+
     }
 
     @SuppressWarnings("unchecked")
@@ -133,92 +150,134 @@ public class MainDashboard extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1200, 800));
 
-        jPanel2.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel2.setBackground(new java.awt.Color(30, 101, 165));
         jPanel2.setForeground(new java.awt.Color(35, 43, 49));
-        jPanel2.setPreferredSize(new java.awt.Dimension(150, 551));
+        jPanel2.setPreferredSize(new java.awt.Dimension(180, 551));
 
         btnHome.setText("HOME");
+        btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHomeActionPerformed(evt);
             }
         });
 
+        btnPedidos.setBackground(new java.awt.Color(30, 101, 165));
+        btnPedidos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnPedidos.setForeground(new java.awt.Color(255, 255, 255));
         btnPedidos.setText("Pedidos");
+        btnPedidos.setBorderPainted(false);
+        btnPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPedidosActionPerformed(evt);
             }
         });
 
+        btnFornecedores.setBackground(new java.awt.Color(30, 101, 165));
+        btnFornecedores.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnFornecedores.setForeground(new java.awt.Color(255, 255, 255));
         btnFornecedores.setText("Fornecedores");
+        btnFornecedores.setBorderPainted(false);
+        btnFornecedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnFornecedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFornecedoresActionPerformed(evt);
             }
         });
 
+        btnProdutos.setBackground(new java.awt.Color(30, 101, 165));
+        btnProdutos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnProdutos.setForeground(new java.awt.Color(255, 255, 255));
         btnProdutos.setText("Produtos");
+        btnProdutos.setBorderPainted(false);
+        btnProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProdutosActionPerformed(evt);
             }
         });
 
+        btnClientes.setBackground(new java.awt.Color(30, 101, 165));
+        btnClientes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnClientes.setForeground(new java.awt.Color(255, 255, 255));
         btnClientes.setText("Clientes");
+        btnClientes.setBorderPainted(false);
+        btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClientesActionPerformed(evt);
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("MENU DE NAVEGAÇÃO");
 
         CADASTROS.setBackground(new java.awt.Color(153, 153, 153));
-        CADASTROS.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        CADASTROS.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         CADASTROS.setForeground(new java.awt.Color(0, 0, 0));
         CADASTROS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CADASTROS.setText("Cadastros");
 
         CADASTROS1.setBackground(new java.awt.Color(153, 153, 153));
-        CADASTROS1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        CADASTROS1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         CADASTROS1.setForeground(new java.awt.Color(0, 0, 0));
         CADASTROS1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CADASTROS1.setText("Relatórios");
 
+        btnListaFornecedores.setBackground(new java.awt.Color(30, 101, 165));
+        btnListaFornecedores.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnListaFornecedores.setForeground(new java.awt.Color(255, 255, 255));
         btnListaFornecedores.setText("Lista Fornecedores");
+        btnListaFornecedores.setBorderPainted(false);
         btnListaFornecedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListaFornecedoresActionPerformed(evt);
             }
         });
 
+        btnListaProdutos.setBackground(new java.awt.Color(30, 101, 165));
+        btnListaProdutos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnListaProdutos.setForeground(new java.awt.Color(255, 255, 255));
         btnListaProdutos.setText("Lista Produtos");
+        btnListaProdutos.setBorderPainted(false);
         btnListaProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListaProdutosActionPerformed(evt);
             }
         });
 
+        btnListaClientes.setBackground(new java.awt.Color(30, 101, 165));
+        btnListaClientes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnListaClientes.setForeground(new java.awt.Color(255, 255, 255));
         btnListaClientes.setText("Lista Clientes");
+        btnListaClientes.setBorderPainted(false);
         btnListaClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListaClientesActionPerformed(evt);
             }
         });
 
+        btnCategoria.setBackground(new java.awt.Color(30, 101, 165));
+        btnCategoria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCategoria.setForeground(new java.awt.Color(255, 255, 255));
         btnCategoria.setText("Categoria");
+        btnCategoria.setBorderPainted(false);
+        btnCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCategoriaActionPerformed(evt);
             }
         });
 
+        btnListaPedidos.setBackground(new java.awt.Color(30, 101, 165));
+        btnListaPedidos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnListaPedidos.setForeground(new java.awt.Color(255, 255, 255));
         btnListaPedidos.setText("Lista Pedidos");
+        btnListaPedidos.setBorderPainted(false);
         btnListaPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListaPedidosActionPerformed(evt);
@@ -226,19 +285,27 @@ public class MainDashboard extends javax.swing.JFrame {
         });
 
         CADASTROS2.setBackground(new java.awt.Color(153, 153, 153));
-        CADASTROS2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        CADASTROS2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         CADASTROS2.setForeground(new java.awt.Color(0, 0, 0));
         CADASTROS2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CADASTROS2.setText("Administração");
 
+        btnUsuarios.setBackground(new java.awt.Color(30, 101, 165));
+        btnUsuarios.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnUsuarios.setForeground(new java.awt.Color(255, 255, 255));
         btnUsuarios.setText("Usuários");
+        btnUsuarios.setBorderPainted(false);
         btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUsuariosActionPerformed(evt);
             }
         });
 
+        btnPermissoes.setBackground(new java.awt.Color(30, 101, 165));
+        btnPermissoes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnPermissoes.setForeground(new java.awt.Color(255, 255, 255));
         btnPermissoes.setText("Permissões");
+        btnPermissoes.setBorderPainted(false);
         btnPermissoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPermissoesActionPerformed(evt);
@@ -253,7 +320,7 @@ public class MainDashboard extends javax.swing.JFrame {
             .addComponent(btnPedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnFornecedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+            .addComponent(btnClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(CADASTROS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(CADASTROS1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -271,9 +338,9 @@ public class MainDashboard extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnHome)
-                .addGap(65, 65, 65)
+                .addGap(53, 53, 53)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnPedidos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CADASTROS)
@@ -301,8 +368,10 @@ public class MainDashboard extends javax.swing.JFrame {
                 .addComponent(btnUsuarios)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPermissoes)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
+
+        btnPedidos.getAccessibleContext().setAccessibleDescription("Lançar Pedido");
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_START);
 
@@ -493,9 +562,24 @@ public class MainDashboard extends javax.swing.JFrame {
         l.setVisible(true);
     }//GEN-LAST:event_btnPermissoesActionPerformed
 
+    private void configurarEfeitoBotao(javax.swing.JComponent componente, java.awt.Color corEntrada, java.awt.Color corSaida) {
+        componente.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                componente.setBackground(corEntrada);
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                componente.setBackground(corSaida);
+            }
+        });
+    }
+
     public static void main(String args[]) {
 
-        java.awt.EventQueue.invokeLater(() -> {MainDashboard frame = new MainDashboard();
+        java.awt.EventQueue.invokeLater(() -> {
+            MainDashboard frame = new MainDashboard();
             frame.setVisible(true); // Garante que o JFrame principal apareça
             frame.setLocationRelativeTo(null); // Centraliza na tela
         });
