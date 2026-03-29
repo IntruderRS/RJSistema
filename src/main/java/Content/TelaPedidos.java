@@ -1,22 +1,26 @@
 package Content;
 
+import br.com.sistemarj.rjsistema.persistencia.JPAUtil;
+
 public class TelaPedidos extends javax.swing.JPanel {
+
+    private boolean selecionandoDaLista = false;
+
+   
 
     public TelaPedidos() {
         initComponents();
     }
-
+        
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        txtCliente = new javax.swing.JTextField();
-        btnPesquisarCliente = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        btnPesquisarProduto = new javax.swing.JButton();
+        txtProduto = new javax.swing.JTextField();
+        btnBuscarProduto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
@@ -45,6 +49,10 @@ public class TelaPedidos extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         txtNumeroPedido = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
+        txtNomeCliente = new javax.swing.JTextField();
+        btnBuscarCliente = new javax.swing.JButton();
+
+        setForeground(new java.awt.Color(205, 205, 205));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -52,11 +60,9 @@ public class TelaPedidos extends javax.swing.JPanel {
 
         jLabel1.setText("Nome Cliente:");
 
-        btnPesquisarCliente.setText("Pesquisar");
-
         jLabel3.setText("Produto:");
 
-        btnPesquisarProduto.setText("Pesquisar");
+        btnBuscarProduto.setText("Buscar");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -86,6 +92,11 @@ public class TelaPedidos extends javax.swing.JPanel {
         jLabel11.setText("Quantidade:");
 
         btnOk.setText("Ok");
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -135,11 +146,18 @@ public class TelaPedidos extends javax.swing.JPanel {
         txtNumeroPedido.setBackground(new java.awt.Color(204, 204, 204));
         txtNumeroPedido.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtNumeroPedido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtNumeroPedido.setText("5568");
         txtNumeroPedido.setToolTipText("");
 
         jTextField4.setBackground(new java.awt.Color(204, 204, 204));
         jTextField4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+
+        txtNomeCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNomeClienteKeyReleased(evt);
+            }
+        });
+
+        btnBuscarCliente.setText("Buscar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -155,7 +173,7 @@ public class TelaPedidos extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(45, 45, 45)
@@ -164,17 +182,17 @@ public class TelaPedidos extends javax.swing.JPanel {
                                 .addComponent(txtValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(47, 47, 47)
                                 .addComponent(btnOk))
-                            .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
+                            .addComponent(txtNomeCliente))
                         .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnPesquisarCliente)
-                            .addComponent(btnPesquisarProduto))
+                            .addComponent(btnBuscarProduto)
+                            .addComponent(btnBuscarCliente))
                         .addGap(78, 78, 78)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNumeroPedido))
-                        .addContainerGap(58, Short.MAX_VALUE))
+                        .addContainerGap(66, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
@@ -230,14 +248,14 @@ public class TelaPedidos extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarCliente)
-                    .addComponent(jLabel13))
+                    .addComponent(jLabel13)
+                    .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarProduto)
+                    .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarProduto)
                     .addComponent(txtNumeroPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -273,14 +291,22 @@ public class TelaPedidos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+
+    }//GEN-LAST:event_btnOkActionPerformed
+
+    private void txtNomeClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeClienteKeyReleased
+
+    }//GEN-LAST:event_txtNomeClienteKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarPedido;
+    private javax.swing.JButton btnBuscarCliente;
+    private javax.swing.JButton btnBuscarProduto;
     private javax.swing.JButton btnLimparPedido;
     private javax.swing.JButton btnOk;
     private javax.swing.JButton btnPesquisar;
-    private javax.swing.JButton btnPesquisarCliente;
-    private javax.swing.JButton btnPesquisarProduto;
     private javax.swing.JButton btnSalvarPedido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -299,13 +325,13 @@ public class TelaPedidos extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField txtCliente;
     private javax.swing.JTextField txtDesconto;
+    private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNumeroPedido;
+    private javax.swing.JTextField txtProduto;
     private javax.swing.JTextField txtQuantidade;
     private javax.swing.JTextField txtTipoFrete;
     private javax.swing.JTextField txtValorFrete;

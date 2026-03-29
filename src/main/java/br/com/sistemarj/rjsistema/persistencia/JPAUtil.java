@@ -1,4 +1,4 @@
-package br.com.cenaflix.podcast.persistencia;
+package br.com.sistemarj.rjsistema.persistencia;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

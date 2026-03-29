@@ -1,6 +1,8 @@
 
-package Classes;
+package br.com.sistemarj.rjsistema.classes;
 
+import Classes.Cliente;
+import Classes.Produto;
 import java.util.ArrayList;
 
 
@@ -14,20 +16,6 @@ public class Pedido {
         this.id = id;
         this.cliente = cliente;
         this.formaPagamento = formaPagamento;
-    }
-
-    public void adicionarProduto(Produto p) {
-        itens.add(p);
-    }
-
-    public void exibirResumo() {
-        System.out.println("Pedido #" + id + " - Cliente: " + cliente.nome);
-        double total = 0;
-        for (Produto p : itens) {
-            p.exibirProduto();
-            total += p.precoVenda;
-        }
-        System.out.println("Total: R$" + total + " | Pagamento: " + formaPagamento);
-    }
-
+    } 
 }
+   

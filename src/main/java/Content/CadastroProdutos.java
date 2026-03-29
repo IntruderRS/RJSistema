@@ -48,6 +48,8 @@ public class CadastroProdutos extends javax.swing.JPanel {
         btnLimpar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
 
+        setForeground(new java.awt.Color(205, 205, 205));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

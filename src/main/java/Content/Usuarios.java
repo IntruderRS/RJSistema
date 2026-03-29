@@ -33,6 +33,8 @@ public class Usuarios extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
+        setForeground(new java.awt.Color(205, 205, 205));
+
         jLabel1.setText("ID:");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N

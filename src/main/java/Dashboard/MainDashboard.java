@@ -148,14 +148,28 @@ public class MainDashboard extends javax.swing.JFrame {
         main = new javax.swing.JLayeredPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("RJSistemas");
+        setName("RJSistemas"); // NOI18N
         setPreferredSize(new java.awt.Dimension(1200, 800));
 
         jPanel2.setBackground(new java.awt.Color(30, 101, 165));
         jPanel2.setForeground(new java.awt.Color(35, 43, 49));
         jPanel2.setPreferredSize(new java.awt.Dimension(180, 551));
 
+        btnHome.setBackground(new java.awt.Color(21, 44, 95));
+        btnHome.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnHome.setForeground(new java.awt.Color(255, 255, 255));
         btnHome.setText("HOME");
+        btnHome.setBorderPainted(false);
         btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnHomeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnHomeMouseExited(evt);
+            }
+        });
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHomeActionPerformed(evt);
@@ -165,6 +179,7 @@ public class MainDashboard extends javax.swing.JFrame {
         btnPedidos.setBackground(new java.awt.Color(30, 101, 165));
         btnPedidos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnPedidos.setForeground(new java.awt.Color(255, 255, 255));
+        btnPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/PedidosPEQ.png"))); // NOI18N
         btnPedidos.setText("Pedidos");
         btnPedidos.setBorderPainted(false);
         btnPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -220,12 +235,14 @@ public class MainDashboard extends javax.swing.JFrame {
         CADASTROS.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         CADASTROS.setForeground(new java.awt.Color(0, 0, 0));
         CADASTROS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CADASTROS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadastroPEQ.png"))); // NOI18N
         CADASTROS.setText("Cadastros");
 
         CADASTROS1.setBackground(new java.awt.Color(153, 153, 153));
         CADASTROS1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         CADASTROS1.setForeground(new java.awt.Color(0, 0, 0));
         CADASTROS1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CADASTROS1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/RelatorioPEQ2.png"))); // NOI18N
         CADASTROS1.setText("Relatórios");
 
         btnListaFornecedores.setBackground(new java.awt.Color(30, 101, 165));
@@ -288,6 +305,7 @@ public class MainDashboard extends javax.swing.JFrame {
         CADASTROS2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         CADASTROS2.setForeground(new java.awt.Color(0, 0, 0));
         CADASTROS2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CADASTROS2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/AdminPEQ.png"))); // NOI18N
         CADASTROS2.setText("Administração");
 
         btnUsuarios.setBackground(new java.awt.Color(30, 101, 165));
@@ -368,13 +386,14 @@ public class MainDashboard extends javax.swing.JFrame {
                 .addComponent(btnUsuarios)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPermissoes)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnPedidos.getAccessibleContext().setAccessibleDescription("Lançar Pedido");
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_START);
 
+        main.setForeground(new java.awt.Color(205, 205, 205));
         main.setLayout(new java.awt.CardLayout());
         getContentPane().add(main, java.awt.BorderLayout.CENTER);
 
@@ -561,6 +580,14 @@ public class MainDashboard extends javax.swing.JFrame {
         k.setVisible(false);
         l.setVisible(true);
     }//GEN-LAST:event_btnPermissoesActionPerformed
+
+    private void btnHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseEntered
+        btnHome.setBackground(new java.awt.Color(51, 51, 51));
+    }//GEN-LAST:event_btnHomeMouseEntered
+
+    private void btnHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseExited
+        btnHome.setBackground(new java.awt.Color(30, 101, 165));
+    }//GEN-LAST:event_btnHomeMouseExited
 
     private void configurarEfeitoBotao(javax.swing.JComponent componente, java.awt.Color corEntrada, java.awt.Color corSaida) {
         componente.addMouseListener(new java.awt.event.MouseAdapter() {
