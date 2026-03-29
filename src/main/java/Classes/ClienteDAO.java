@@ -3,6 +3,7 @@ package Classes;
 
 import br.com.sistemarj.rjsistema.persistencia.JPAUtil;
 import jakarta.persistence.EntityManager;
+import java.util.List;
 
 public class ClienteDAO {
     
@@ -21,4 +22,15 @@ public class ClienteDAO {
         em.close(); // Libera a conexão
     }
 }
+    
+    public List<Cliente> listarTodos() {
+    EntityManager em = JPAUtil.getEntityManager();
+    try {
+        // "Cliente" deve ser o nome da sua CLASSE Entidade
+        return em.createQuery("FROM Cliente", Cliente.class).getResultList();
+    } finally {
+        em.close();
+    }
+}
+    
 }
