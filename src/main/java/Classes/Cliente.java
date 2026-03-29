@@ -51,6 +51,9 @@ public class Cliente {
 
     @Column(name = "Email")
     private String email;
+    
+    @Column(name = "Observacao")
+    private String Observacao;
 
     public Long getId() {
         return id;
@@ -114,6 +117,14 @@ public class Cliente {
 
     public void setBairro(String bairro) {
         this.bairro = bairro;
+    }
+    
+    public String getObservacao() {
+        return Observacao;
+    }
+    
+    public void setObservacao(String bairro) {
+        this.Observacao = Observacao;
     }
 
     public String getCidade() {

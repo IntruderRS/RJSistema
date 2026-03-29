@@ -4,18 +4,22 @@ import Classes.*;
 import javax.swing.JOptionPane;
 
 public class CadastroClientes extends javax.swing.JPanel {
+    
 
+    private Cliente clienteAtual;
+    
     public CadastroClientes() {
         initComponents();
 
     }
 
     private void limparCampos() {
+        txtID.setText("");
         txtRazaoSocialNome.setText("");
         txtNomeFantasia.setText("");
         txtCNPJCPF.setText("");
         txtNascimento.setText("");
-        txtAtividadeProfissão.setText("");        
+        txtAtividadeProfissão.setText("");
         txtRua.setText("");
         txtBairro.setText("");
         txtCidade.setText("");
@@ -23,8 +27,9 @@ public class CadastroClientes extends javax.swing.JPanel {
         txtCEP.setText("");
         txtTelefoneContato.setText("");
         txtWhatsapp.setText("");
-        txtEmail.setText("");  
-        
+        txtEmail.setText("");
+        txtObservacao.setText("");
+
         txtRazaoSocialNome.requestFocus(); // Coloca o cursor de volta no primeiro campo
     }
 
@@ -62,7 +67,7 @@ public class CadastroClientes extends javax.swing.JPanel {
         txtTelefoneContato = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtObservacoes = new javax.swing.JTextArea();
+        txtObservacao = new javax.swing.JTextArea();
         txtEstado = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         btnBuscar = new javax.swing.JButton();
@@ -72,6 +77,8 @@ public class CadastroClientes extends javax.swing.JPanel {
         setForeground(new java.awt.Color(205, 205, 205));
 
         jLabel1.setText("ID:");
+
+        txtID.setEditable(false);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -105,11 +112,16 @@ public class CadastroClientes extends javax.swing.JPanel {
 
         jLabel17.setText("Observações:");
 
-        txtObservacoes.setColumns(20);
-        txtObservacoes.setRows(5);
-        jScrollPane1.setViewportView(txtObservacoes);
+        txtObservacao.setColumns(20);
+        txtObservacao.setRows(5);
+        jScrollPane1.setViewportView(txtObservacao);
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
 
@@ -277,30 +289,75 @@ public class CadastroClientes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        Cliente c = new Cliente();
 
-        // Mapeando os JTextFields para o objeto
-        c.setNomeRazao(txtRazaoSocialNome.getText());
-        c.setNomeFantasia(txtNomeFantasia.getText());
-        c.setCnpjCpf(txtCNPJCPF.getText());
-        c.setNascimento(txtNascimento.getText());
-        c.setProfissao(txtAtividadeProfissão.getText());
-        c.setRua(txtRua.getText());
-        c.setBairro(txtBairro.getText());
-        c.setCidade(txtCidade.getText());
-        c.setEstado(txtEstado.getText());
-        c.setCep(txtCEP.getText());
-        c.setTelefone(txtTelefoneContato.getText());
-        c.setWhatsapp(txtWhatsapp.getText());
-        c.setEmail(txtEmail.getText());
+        // 1. Se não estamos editando, criamos um novo. Se estamos, usamos o atual.
+    if (clienteAtual == null) {
+        clienteAtual = new Cliente();
+    }
 
-        new ClienteDAO().salvar(c);
+    // 2. Passa os dados dos campos para o objeto (MUITO IMPORTANTE)
+        clienteAtual.setNomeRazao(txtID.getText());
+        clienteAtual.setNomeRazao(txtRazaoSocialNome.getText());
+        clienteAtual.setNomeFantasia(txtNomeFantasia.getText());
+        clienteAtual.setCnpjCpf(txtCNPJCPF.getText());
+        clienteAtual.setNascimento(txtNascimento.getText());
+        clienteAtual.setProfissao(txtAtividadeProfissão.getText());
+        clienteAtual.setRua(txtRua.getText());
+        clienteAtual.setBairro(txtBairro.getText());
+        clienteAtual.setCidade(txtCidade.getText());
+        clienteAtual.setEstado(txtEstado.getText());
+        clienteAtual.setCep(txtCEP.getText());
+        clienteAtual.setTelefone(txtTelefoneContato.getText());
+        clienteAtual.setWhatsapp(txtWhatsapp.getText());
+        clienteAtual.setEmail(txtEmail.getText());
+        clienteAtual.setObservacao(txtObservacao.getText());
 
-        JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
-
+    // 3. Salva ou Atualiza
+    ClienteDAO dao = new ClienteDAO();
+    try {
+        if (clienteAtual.getId() == null) {
+            dao.salvar(clienteAtual); // Usa persist
+            JOptionPane.showMessageDialog(this, "Cadastrado com sucesso!");
+        } else {
+            dao.atualizar(clienteAtual); // Usa merge
+            JOptionPane.showMessageDialog(this, "Alterado com sucesso!");
+        }
+        
         limparCampos();
+        clienteAtual = null; // Reseta para o próximo não vir como edição
+        
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Erro ao salvar: " + e.getMessage());
+    }
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+
+    public void prepararEdicao(Cliente c) {
+        this.clienteAtual = c; // Guarda o cliente que veio da lista
+
+        // Preenche os campos da tela
+        txtID.setText(String.valueOf(c.getId()));
+        txtRazaoSocialNome.setText(c.getNomeRazao());
+        txtEmail.setText(c.getEmail());
+        txtCNPJCPF.setText(c.getCnpjCpf());
+        txtAtividadeProfissão.setText(c.getProfissao());
+        txtCEP.setText(c.getCep());
+        txtCidade.setText(c.getCidade());
+        txtEstado.setText(c.getEstado());
+        txtNascimento.setText(c.getNascimento());
+        txtWhatsapp.setText(c.getWhatsapp());
+        txtTelefoneContato.setText(c.getTelefone());
+        txtRua.setText(c.getRua());
+        txtNomeFantasia.setText(c.getNomeFantasia());
+        txtBairro.setText(c.getBairro());
+        txtObservacao.setText(c.getObservacao());
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -334,7 +391,7 @@ public class CadastroClientes extends javax.swing.JPanel {
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNascimento;
     private javax.swing.JTextField txtNomeFantasia;
-    private javax.swing.JTextArea txtObservacoes;
+    private javax.swing.JTextArea txtObservacao;
     private javax.swing.JTextField txtRazaoSocialNome;
     private javax.swing.JTextField txtRua;
     private javax.swing.JTextField txtTelefoneContato;

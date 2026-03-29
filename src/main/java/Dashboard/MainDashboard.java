@@ -78,6 +78,7 @@ public class MainDashboard extends javax.swing.JFrame {
     public MainDashboard() {
         initComponents();
         this.pack();
+        telaCadastro  = e;
 
         java.awt.Color corHover = new java.awt.Color(51, 51, 51); // Cinza Escuro
         java.awt.Color corPadrao = new java.awt.Color(30, 101, 165); // Volta cor normal
@@ -400,6 +401,24 @@ public class MainDashboard extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    // Transforme a variável 'e' em static para acessá-la de fora
+    public static Content.CadastroClientes telaCadastro;
+
+// No seu construtor ou init, onde você faz o main.add(e):
+    
+
+// Crie este método para ser chamado pela Lista
+    public static void exibirEdicao(Classes.Cliente cliente) {
+        // 1. Esconde todas as outras (ou chama seu método de limpar tela)
+        // Ex: esconderTodas(); 
+
+        // 2. Preenche os dados na tela que já existe
+        telaCadastro.prepararEdicao(cliente);
+
+        // 3. Mostra apenas ela
+        telaCadastro.setVisible(true);
+    }
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         a.setVisible(true);
