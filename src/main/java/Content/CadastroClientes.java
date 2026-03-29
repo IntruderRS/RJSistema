@@ -1,9 +1,31 @@
 package Content;
 
+import Classes.*;
+import javax.swing.JOptionPane;
+
 public class CadastroClientes extends javax.swing.JPanel {
 
     public CadastroClientes() {
         initComponents();
+
+    }
+
+    private void limparCampos() {
+        txtRazaoSocialNome.setText("");
+        txtNomeFantasia.setText("");
+        txtCNPJCPF.setText("");
+        txtNascimento.setText("");
+        txtAtividadeProfissão.setText("");        
+        txtRua.setText("");
+        txtBairro.setText("");
+        txtCidade.setText("");
+        txtEstado.setText("");
+        txtCEP.setText("");
+        txtTelefoneContato.setText("");
+        txtWhatsapp.setText("");
+        txtEmail.setText("");  
+        
+        txtRazaoSocialNome.requestFocus(); // Coloca o cursor de volta no primeiro campo
     }
 
     @SuppressWarnings("unchecked")
@@ -32,20 +54,20 @@ public class CadastroClientes extends javax.swing.JPanel {
         txtCNPJCPF = new javax.swing.JTextField();
         txtNascimento = new javax.swing.JTextField();
         txtRua = new javax.swing.JTextField();
+        txtBairro = new javax.swing.JTextField();
         txtCidade = new javax.swing.JTextField();
-        txtEstado = new javax.swing.JTextField();
         txtCEP = new javax.swing.JTextField();
         txtAtividadeProfissão = new javax.swing.JTextField();
         txtWhatsapp = new javax.swing.JTextField();
         txtTelefoneContato = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
+        txtObservacoes = new javax.swing.JTextArea();
+        txtEstado = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        btnLimpar = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
 
         setForeground(new java.awt.Color(205, 205, 205));
 
@@ -83,15 +105,20 @@ public class CadastroClientes extends javax.swing.JPanel {
 
         jLabel17.setText("Observações:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtObservacoes.setColumns(20);
+        txtObservacoes.setRows(5);
+        jScrollPane1.setViewportView(txtObservacoes);
 
-        jButton3.setText("Pesquisar");
+        btnBuscar.setText("Buscar");
 
-        jButton2.setText("Limpar");
+        btnLimpar.setText("Limpar");
 
-        jButton1.setText("Salvar");
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,11 +126,11 @@ public class CadastroClientes extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(127, 127, 127)
-                .addComponent(jButton3)
+                .addComponent(btnBuscar)
                 .addGap(125, 125, 125)
-                .addComponent(jButton2)
+                .addComponent(btnLimpar)
                 .addGap(117, 117, 117)
-                .addComponent(jButton1)
+                .addComponent(btnSalvar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -111,9 +138,9 @@ public class CadastroClientes extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnSalvar)
+                    .addComponent(btnLimpar)
+                    .addComponent(btnBuscar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -160,7 +187,7 @@ public class CadastroClientes extends javax.swing.JPanel {
                             .addComponent(txtAtividadeProfissão, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtRazaoSocialNome, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNomeFantasia)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(txtEstado, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(78, 78, 78))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,8 +196,8 @@ public class CadastroClientes extends javax.swing.JPanel {
                             .addComponent(txtWhatsapp, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -211,15 +238,15 @@ public class CadastroClientes extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
@@ -249,11 +276,36 @@ public class CadastroClientes extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        Cliente c = new Cliente();
+
+        // Mapeando os JTextFields para o objeto
+        c.setNomeRazao(txtRazaoSocialNome.getText());
+        c.setNomeFantasia(txtNomeFantasia.getText());
+        c.setCnpjCpf(txtCNPJCPF.getText());
+        c.setNascimento(txtNascimento.getText());
+        c.setProfissao(txtAtividadeProfissão.getText());
+        c.setRua(txtRua.getText());
+        c.setBairro(txtBairro.getText());
+        c.setCidade(txtCidade.getText());
+        c.setEstado(txtEstado.getText());
+        c.setCep(txtCEP.getText());
+        c.setTelefone(txtTelefoneContato.getText());
+        c.setWhatsapp(txtWhatsapp.getText());
+        c.setEmail(txtEmail.getText());
+
+        new ClienteDAO().salvar(c);
+
+        JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+
+        limparCampos();
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -272,9 +324,8 @@ public class CadastroClientes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtAtividadeProfissão;
+    private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCEP;
     private javax.swing.JTextField txtCNPJCPF;
     private javax.swing.JTextField txtCidade;
@@ -283,6 +334,7 @@ public class CadastroClientes extends javax.swing.JPanel {
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNascimento;
     private javax.swing.JTextField txtNomeFantasia;
+    private javax.swing.JTextArea txtObservacoes;
     private javax.swing.JTextField txtRazaoSocialNome;
     private javax.swing.JTextField txtRua;
     private javax.swing.JTextField txtTelefoneContato;

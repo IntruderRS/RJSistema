@@ -6,36 +6,25 @@ import jakarta.persistence.Persistence;
 
 public class JPAUtil {
 
-    //constante para centralizar o nome da unidade de persistência
-    // se o nome mudar, precisaremos alterar em um só lugar
     private static final String PERSISTENCE_UNIT = "RJSistema-PU";
-
-    private static EntityManager manager;
     private static EntityManagerFactory factory;
 
-    //cria a entidade se estiver nula e a retorna
-    public static EntityManager conectar() {
-        if (factory == null || !factory.isOpen()) {
+    // O Factory deve ser criado apenas uma vez (Thread-safe)
+    static {
+        try {
             factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        } catch (Throwable ex) {
+            throw new ExceptionInInitializerError("Falha ao criar o EntityManagerFactory: " + ex);
         }
-
-        if (manager == null || !manager.isOpen()) //cria se em nulo ou se o entity manager foi fechado
-        {
-            manager = factory.createEntityManager();
-        }
-
-        return manager;
     }
-    
+
+    // Retorna uma NOVA instância de EntityManager a cada chamada
     public static EntityManager getEntityManager() {
-        return conectar();
+        return factory.createEntityManager();
     }
 
-    //fecha o EntityManager e o factory
-    public static void desconectar() {
-        if (manager != null && manager.isOpen()) {
-            manager.close();
-        }
+    // Fecha o Factory ao encerrar a aplicação
+    public static void closeFactory() {
         if (factory != null && factory.isOpen()) {
             factory.close();
         }

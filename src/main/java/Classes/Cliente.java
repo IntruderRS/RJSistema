@@ -1,166 +1,168 @@
 package Classes;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 
 @Entity
-@Table(name = "cliente")
-
+@Table(name = "cliente") // Nome exato da tabela no banco
 public class Cliente {
 
     @Id
-    public Integer id;
-    private String NomeRazao;
-    private String NomeFantasia;
-    public String CNPJ_CPF;
-    public String Nascimento;
-    public String ProfissaoAtividade;
-    public String Rua;
-    public String Bairro;
-    public String Cidade;
-    public String Estado;
-    public String CEP;
-    public String Telefone;
-    public String Whatsapp;
-    public String Email;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id_Cliente")
+    private Long id;
 
-    public Cliente() {
-        //O Hibernate usa isso para "criar" o objeto antes de preencher os dados.
-    }
-    
-    public Cliente(int id, String nome, String nomefantasia, String CNPJ_CPF, String Nascimento, String ProfissaoAtividade, String Rua, String Bairro, String Cidade, String Estado, String CEP, String Telefone, String Whatsapp, String Email) {
-        this.id = id;
-        this.NomeRazao = nome;
-        this.NomeFantasia = nomefantasia;
-        this.CNPJ_CPF = CNPJ_CPF; // Corrigido (estava this.NomeFantasia =)
-        this.Nascimento = Nascimento; // Corrigido
-        this.ProfissaoAtividade = ProfissaoAtividade; // Corrigido
-        this.Rua = Rua; // Corrigido
-        this.Bairro = Bairro; // Corrigido
-        this.Cidade = Cidade; // Corrigido
-        this.Estado = Estado; // Corrigido
-        this.CEP = CEP;
-        this.Telefone = Telefone; // Corrigido
-        this.Whatsapp = Whatsapp; // Corrigido
-        this.Email = Email; // Corrigido
-    }
+    @Column(name = "NomeRazao")
+    private String nomeRazao;
 
-    @Override
-    public String toString() {
-        return this.NomeRazao; // É isso que o Swing vai mostrar na tela
-    }
+    @Column(name = "NomeFantasia")
+    private String nomeFantasia;
 
-    public Integer getId() {
+    @Column(name = "CNPJ_CPF")
+    private String cnpjCpf;
+
+    @Column(name = "Nascimento")
+    private String nascimento; // Se no banco for Date, use Date e @Temporal(TemporalType.DATE)
+
+    @Column(name = "ProfissaoAtividade")
+    private String profissao;
+
+    @Column(name = "Rua")
+    private String rua;
+
+    @Column(name = "Bairro")
+    private String bairro;
+
+    @Column(name = "Cidade")
+    private String cidade;
+
+    @Column(name = "Estado")
+    private String estado;
+
+    @Column(name = "CEP")
+    private String cep;
+
+    @Column(name = "Telefone")
+    private String telefone;
+
+    @Column(name = "Whatsapp")
+    private String whatsapp;
+
+    @Column(name = "Email")
+    private String email;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     public String getNomeRazao() {
-        return NomeRazao;
+        return nomeRazao;
     }
 
-    public void setNomeRazao(String NomeRazao) {
-        this.NomeRazao = NomeRazao;
+    public void setNomeRazao(String nomeRazao) {
+        this.nomeRazao = nomeRazao;
     }
 
     public String getNomeFantasia() {
-        return NomeFantasia;
+        return nomeFantasia;
     }
 
-    public void setNomeFantasia(String NomeFantasia) {
-        this.NomeFantasia = NomeFantasia;
+    public void setNomeFantasia(String nomeFantasia) {
+        this.nomeFantasia = nomeFantasia;
     }
 
-    public String getCNPJ_CPF() {
-        return CNPJ_CPF;
+    public String getCnpjCpf() {
+        return cnpjCpf;
     }
 
-    public void setCNPJ_CPF(String CNPJ_CPF) {
-        this.CNPJ_CPF = CNPJ_CPF;
+    public void setCnpjCpf(String cnpjCpf) {
+        this.cnpjCpf = cnpjCpf;
     }
 
     public String getNascimento() {
-        return Nascimento;
+        return nascimento;
     }
 
-    public void setNascimento(String Nascimento) {
-        this.Nascimento = Nascimento;
+    public void setNascimento(String nascimento) {
+        this.nascimento = nascimento;
     }
 
-    public String getProfissaoAtividade() {
-        return ProfissaoAtividade;
+    public String getProfissao() {
+        return profissao;
     }
 
-    public void setProfissaoAtividade(String ProfissaoAtividade) {
-        this.ProfissaoAtividade = ProfissaoAtividade;
+    public void setProfissao(String profissao) {
+        this.profissao = profissao;
     }
 
     public String getRua() {
-        return Rua;
+        return rua;
     }
 
-    public void setRua(String Rua) {
-        this.Rua = Rua;
+    public void setRua(String rua) {
+        this.rua = rua;
     }
 
     public String getBairro() {
-        return Bairro;
+        return bairro;
     }
 
-    public void setBairro(String Bairro) {
-        this.Bairro = Bairro;
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
     public String getCidade() {
-        return Cidade;
+        return cidade;
     }
 
-    public void setCidade(String Cidade) {
-        this.Cidade = Cidade;
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
     public String getEstado() {
-        return Estado;
+        return estado;
     }
 
-    public void setEstado(String Estado) {
-        this.Estado = Estado;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
-    public String getCEP() {
-        return CEP;
+    public String getCep() {
+        return cep;
     }
 
-    public void setCEP(String CEP) {
-        this.CEP = CEP;
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
     public String getTelefone() {
-        return Telefone;
+        return telefone;
     }
 
-    public void setTelefone(String Telefone) {
-        this.Telefone = Telefone;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getWhatsapp() {
-        return Whatsapp;
+        return whatsapp;
     }
 
-    public void setWhatsapp(String Whatsapp) {
-        this.Whatsapp = Whatsapp;
+    public void setWhatsapp(String whatsapp) {
+        this.whatsapp = whatsapp;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        this.email = email;
     }
-
 }
+    
+

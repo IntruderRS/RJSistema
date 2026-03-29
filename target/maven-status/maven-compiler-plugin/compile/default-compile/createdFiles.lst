@@ -10,9 +10,11 @@ Content\ListaProdutos.class
 br\com\sistemarj\rjsistema\RJSistema.class
 Dashboard\MainDashboard$11.class
 Dashboard\MainDashboard$8.class
+Content\CadastroClientes$1.class
 Dashboard\MainDashboard$5.class
 Classes\Backup.class
 br\com\sistemarj\rjsistema\classes\Pedido.class
+Classes\ClienteDAO.class
 Content\TelaPedidos$2.class
 Content\TelaPedidos.class
 Dashboard\MainDashboard$4.class
