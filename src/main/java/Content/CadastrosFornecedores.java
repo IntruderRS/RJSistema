@@ -1,10 +1,38 @@
 package Content;
 
+import Classes.Fornecedor;
+import Classes.FornecedorDAO;
+import javax.swing.JOptionPane;
+
 public class CadastrosFornecedores extends javax.swing.JPanel {
+    
+    private Fornecedor fornecedorAtual;
 
     public CadastrosFornecedores() {
         initComponents();
     }
+        private void limparCampos() {
+        txtID.setText("");
+        txtRazaoSocial.setText("");
+        txtNomeFantasia.setText("");
+        txtCNPJ.setText("");
+        txtDadosBancarios.setText("");
+        txtRamoAtividade.setText("");
+        txtRua.setText("");
+        txtBairro.setText("");
+        txtCidade.setText("");
+        txtEstado.setText("");
+        txtCEP.setText("");
+        txtTelefoneContato.setText("");
+        txtInscricaoEstadual.setText("");
+        txtEmail.setText("");
+        txtObservacao.setText("");
+        txtDataCadastro.setText("");
+        txtNomeVendedor.setText("");
+
+        txtRazaoSocial.requestFocus(); // Coloca o cursor de volta no primeiro campo
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -34,8 +62,8 @@ public class CadastrosFornecedores extends javax.swing.JPanel {
         txtCNPJ = new javax.swing.JTextField();
         txtInscricaoEstadual = new javax.swing.JTextField();
         txtRua = new javax.swing.JTextField();
+        txtBairro = new javax.swing.JTextField();
         txtCidade = new javax.swing.JTextField();
-        txtEstado = new javax.swing.JTextField();
         txtCEP = new javax.swing.JTextField();
         txtRamoAtividade = new javax.swing.JTextField();
         txtNomeVendedor = new javax.swing.JTextField();
@@ -43,17 +71,19 @@ public class CadastrosFornecedores extends javax.swing.JPanel {
         txtEmail = new javax.swing.JTextField();
         txtDadosBancarios = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jTextField1 = new javax.swing.JTextField();
+        txtObservacao = new javax.swing.JTextArea();
+        txtDataCadastro = new javax.swing.JFormattedTextField();
+        txtEstado = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        btnLimpar = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
 
         setForeground(new java.awt.Color(205, 205, 205));
 
         jLabel1.setText("ID:");
+
+        txtID.setEditable(false);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -91,15 +121,30 @@ public class CadastrosFornecedores extends javax.swing.JPanel {
 
         jLabel18.setText("Data Cadastro:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtObservacao.setColumns(20);
+        txtObservacao.setRows(5);
+        jScrollPane1.setViewportView(txtObservacao);
 
-        jButton3.setText("Pesquisar");
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Limpar");
+        btnLimpar.setText("Limpar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Salvar");
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -107,11 +152,11 @@ public class CadastrosFornecedores extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(119, 119, 119)
-                .addComponent(jButton3)
+                .addComponent(btnBuscar)
                 .addGap(107, 107, 107)
-                .addComponent(jButton2)
+                .addComponent(btnLimpar)
                 .addGap(117, 117, 117)
-                .addComponent(jButton1)
+                .addComponent(btnSalvar)
                 .addContainerGap(153, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -119,9 +164,9 @@ public class CadastrosFornecedores extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnSalvar)
+                    .addComponent(btnLimpar)
+                    .addComponent(btnBuscar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -173,9 +218,9 @@ public class CadastrosFornecedores extends javax.swing.JPanel {
                                     .addComponent(txtNomeVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtRamoAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
@@ -189,7 +234,7 @@ public class CadastrosFornecedores extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(24, 24, 24)
-                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtDataCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(99, 99, 99))
             .addGroup(layout.createSequentialGroup()
@@ -229,15 +274,15 @@ public class CadastrosFornecedores extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
@@ -268,19 +313,105 @@ public class CadastrosFornecedores extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel18)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDataCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        
+         // 1. Se não estamos editando, criamos um novo. Se estamos, usamos o atual.
+        if (fornecedorAtual == null) {
+            fornecedorAtual = new Fornecedor();
+        }
+
+        // 2. Passa os dados dos campos para o objeto (MUITO IMPORTANTE)
+        fornecedorAtual.setNomeRazao(txtID.getText());
+        fornecedorAtual.setNomeRazao(txtRazaoSocial.getText());
+        fornecedorAtual.setNomeFantasia(txtNomeFantasia.getText());
+        fornecedorAtual.setCnpj(txtCNPJ.getText());
+        fornecedorAtual.setDadosBanco(txtDadosBancarios.getText());
+        fornecedorAtual.setAtividade(txtRamoAtividade.getText());
+        fornecedorAtual.setRua(txtRua.getText());
+        fornecedorAtual.setBairro(txtBairro.getText());
+        fornecedorAtual.setCidade(txtCidade.getText());
+        fornecedorAtual.setEstado(txtEstado.getText());
+        fornecedorAtual.setCep(txtCEP.getText());
+        fornecedorAtual.setContato(txtTelefoneContato.getText());
+        fornecedorAtual.setInscricao(txtInscricaoEstadual.getText());
+        fornecedorAtual.setEmail(txtEmail.getText());
+        fornecedorAtual.setObservacoes(txtObservacao.getText());
+        fornecedorAtual.setDataCadastro(txtDataCadastro.getText());
+        fornecedorAtual.setVendedor(txtNomeVendedor.getText());
+
+        // 3. Salva ou Atualiza
+        FornecedorDAO dao = new FornecedorDAO();
+        try {
+            if (fornecedorAtual.getId() == null) {
+                dao.salvar(fornecedorAtual); // Usa persist
+                JOptionPane.showMessageDialog(this, "Cadastrado com sucesso!");
+            } else {
+                dao.atualizar(fornecedorAtual); // Usa merge
+                JOptionPane.showMessageDialog(this, "Alterado com sucesso!");
+            }
+
+            limparCampos();
+            fornecedorAtual = null; // Reseta para o próximo não vir como edição
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao salvar: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        Dashboard.MainDashboard.mostrarLista();
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+         // 1. Chama o método que limpa os textos dos campos
+        limparCampos();
+
+        // 2. MUITO IMPORTANTE: Reseta a variável de controle
+        // Isso evita que o sistema tente atualizar o ID do cliente anterior
+        this.fornecedorAtual = null;
+
+        // 3. Opcional: Coloca o foco no primeiro campo
+        txtRazaoSocial.requestFocus();
+
+        // Feedback visual (opcional)
+        // System.out.println("Formulário resetado para novo cadastro.");
+    }//GEN-LAST:event_btnLimparActionPerformed
+
+     public void prepararEdicao(Fornecedor c) {
+        this.fornecedorAtual = c; // Guarda o cliente que veio da lista
+
+        // Preenche os campos da tela
+        txtID.setText(String.valueOf(c.getId()));
+        txtRazaoSocial.setText(c.getNomeRazao());
+        txtEmail.setText(c.getEmail());
+        txtCNPJ.setText(c.getCnpj());
+        txtRamoAtividade.setText(c.getAtividade());
+        txtCEP.setText(c.getCep());
+        txtCidade.setText(c.getCidade());
+        txtEstado.setText(c.getEstado());
+        txtTelefoneContato.setText(c.getContato());
+        txtInscricaoEstadual.setText(c.getInscricao());
+        txtDadosBancarios.setText(c.getDadosBanco());
+        txtRua.setText(c.getRua());
+        txtNomeFantasia.setText(c.getNomeFantasia());
+        txtBairro.setText(c.getBairro());
+        txtObservacao.setText(c.getObservacoes());
+        txtDataCadastro.setText(c.getDataCadastro());
+        txtNomeVendedor.setText(c.getVendedor());
+        
+     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -301,18 +432,19 @@ public class CadastrosFornecedores extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCEP;
     private javax.swing.JTextField txtCNPJ;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtDadosBancarios;
+    private javax.swing.JFormattedTextField txtDataCadastro;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtInscricaoEstadual;
     private javax.swing.JTextField txtNomeFantasia;
     private javax.swing.JTextField txtNomeVendedor;
+    private javax.swing.JTextArea txtObservacao;
     private javax.swing.JTextField txtRamoAtividade;
     private javax.swing.JTextField txtRazaoSocial;
     private javax.swing.JTextField txtRua;

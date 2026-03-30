@@ -3,9 +3,9 @@ package Classes;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "cliente") // Nome exato da tabela no banco
-public class Cliente {
+    @Entity
+    @Table(name = "cliente") // Nome exato da tabela no banco
+    public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

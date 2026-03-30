@@ -1,13 +1,17 @@
 Content\CadastroClientes.class
 Content\ListaClientes.class
+Content\ListaFornecedores$2.class
 Content\CadastroCategoria.class
 Dashboard\MainDashboard$3.class
 Dashboard\MainDashboard$13.class
 Content\ListaClientes$1.class
+Classes\FornecedorDAO.class
+Content\CadastrosFornecedores$2.class
 Content\TelaPedidos$2.class
 Dashboard\MainDashboard$14.class
 Dashboard\MainDashboard$MyForm.class
 Dashboard\MainDashboard$MyForm$1.class
+Content\ListaFornecedores$1.class
 Dashboard\MainDashboard$2.class
 Content\CadastroClientes$2.class
 Content\ListaFornecedores.class
@@ -17,6 +21,7 @@ Content\Usuarios.class
 Dashboard\MainDashboard$6.class
 Dashboard\MainDashboard$10.class
 Classes\Usuario.class
+Content\CadastrosFornecedores$3.class
 Classes\Estoque.class
 Content\TelaHome.class
 Dashboard\MainDashboard$9.class
@@ -38,6 +43,7 @@ Dashboard\MainDashboard$4.class
 br\com\sistemarj\rjsistema\persistencia\JPAUtil.class
 Content\CadastroClientes$3.class
 Dashboard\MainDashboard.class
+Content\CadastrosFornecedores$1.class
 Dashboard\MainDashboard$7.class
 Dashboard\MainDashboard$12.class
 Dashboard\MainDashboard$1.class
