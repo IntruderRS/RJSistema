@@ -82,6 +82,8 @@ public class MainDashboard extends javax.swing.JFrame {
         telaCadastro = e; //puxa a tela CadastroClientes a partir da tela ListaClientes
         telaCadFornecedor = c;
         telaListaFornecedor = f; ;//puxa a tela CadastroFornecedor a partir da tela ListaFornecedor
+        telaCadProduto = d; 
+        telaListaProduto = g;
 
         java.awt.Color corHover = new java.awt.Color(51, 51, 51); // Cinza Escuro
         java.awt.Color corPadrao = new java.awt.Color(30, 101, 165); // Volta cor normal
@@ -410,6 +412,14 @@ public class MainDashboard extends javax.swing.JFrame {
     public static Content.ListaClientes telaLista;
     public static Content.CadastrosFornecedores telaCadFornecedor;
     public static Content.ListaFornecedores telaListaFornecedor;
+    public static Content.CadastroProdutos telaCadProduto;
+    public static Content.ListaProdutos telaListaProduto;
+    
+    public static void mostrarListaProdutos() {
+    telaCadProduto.setVisible(false);
+    telaListaProduto.setVisible(true);
+    telaListaProduto.atualizarTabela();
+}
     
 
     //trecho pra esconder a tela CadastroClientes e mostrar a tela ListaClientes 

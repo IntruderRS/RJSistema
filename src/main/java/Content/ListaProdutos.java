@@ -1,6 +1,10 @@
 
 package Content;
 
+import Classes.Produto;
+import Classes.ProdutoDAO;
+import javax.swing.table.DefaultTableModel;
+
 public class ListaProdutos extends javax.swing.JPanel {
 
     public ListaProdutos() {
@@ -14,6 +18,12 @@ public class ListaProdutos extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblFornecedor = new javax.swing.JTable();
+
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -52,6 +62,21 @@ public class ListaProdutos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        atualizarTabela();
+    }//GEN-LAST:event_formComponentShown
+
+    public void atualizarTabela() {
+    DefaultTableModel modelo = (DefaultTableModel) tblFornecedor.getModel();
+    modelo.setNumRows(0);
+    
+    ProdutoDAO dao = new ProdutoDAO();
+    for (Produto p : dao.listarTodos()) {
+        modelo.addRow(new Object[]{
+            p.getId(), p.getNome(), p.getValorCusto(), p.getValorVenda()
+        });
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

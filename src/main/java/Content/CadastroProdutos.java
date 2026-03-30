@@ -1,7 +1,13 @@
 package Content;
 
+import Classes.Produto;
+import Classes.ProdutoDAO;
+import javax.swing.JOptionPane;
+
+
 public class CadastroProdutos extends javax.swing.JPanel {
 
+    private Produto produtoAtual;
     
     public CadastroProdutos() {
         initComponents();
@@ -94,6 +100,11 @@ public class CadastroProdutos extends javax.swing.JPanel {
         btnLimpar.setText("Limpar");
 
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -238,6 +249,32 @@ public class CadastroProdutos extends javax.swing.JPanel {
                 .addContainerGap(74, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+
+        if (produtoAtual == null) {
+            produtoAtual = new Produto();
+        }
+        
+         // Pega o texto do campo Preço
+        String precoTexto = txtValorCusto.getText().trim();
+        
+        // Troca a vírgula por ponto para o Java entender como número decimal
+        precoTexto = precoTexto.replace(",", ".");
+
+        // Converte para Double (se o campo estiver vazio, define como 0.0)
+        double precoLimpo = precoTexto.isEmpty() ? 0.0 : Double.parseDouble(precoTexto);
+        
+
+        produtoAtual.setNome(txtNome.getText());
+        produtoAtual.setValorCusto(Double.valueOf(txtValorCusto.getText())); // Cuidado com virgula/ponto aqui
+        // ...
+
+        new ProdutoDAO().salvar(produtoAtual);
+        JOptionPane.showMessageDialog(this, "Produto salvo!");
+        limparCampos();
+ 
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
