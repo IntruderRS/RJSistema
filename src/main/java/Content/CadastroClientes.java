@@ -4,10 +4,9 @@ import Classes.*;
 import javax.swing.JOptionPane;
 
 public class CadastroClientes extends javax.swing.JPanel {
-    
 
     private Cliente clienteAtual;
-    
+
     public CadastroClientes() {
         initComponents();
 
@@ -124,6 +123,11 @@ public class CadastroClientes extends javax.swing.JPanel {
         });
 
         btnLimpar.setText("Limpar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -291,11 +295,11 @@ public class CadastroClientes extends javax.swing.JPanel {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
         // 1. Se não estamos editando, criamos um novo. Se estamos, usamos o atual.
-    if (clienteAtual == null) {
-        clienteAtual = new Cliente();
-    }
+        if (clienteAtual == null) {
+            clienteAtual = new Cliente();
+        }
 
-    // 2. Passa os dados dos campos para o objeto (MUITO IMPORTANTE)
+        // 2. Passa os dados dos campos para o objeto (MUITO IMPORTANTE)
         clienteAtual.setNomeRazao(txtID.getText());
         clienteAtual.setNomeRazao(txtRazaoSocialNome.getText());
         clienteAtual.setNomeFantasia(txtNomeFantasia.getText());
@@ -312,30 +316,44 @@ public class CadastroClientes extends javax.swing.JPanel {
         clienteAtual.setEmail(txtEmail.getText());
         clienteAtual.setObservacao(txtObservacao.getText());
 
-    // 3. Salva ou Atualiza
-    ClienteDAO dao = new ClienteDAO();
-    try {
-        if (clienteAtual.getId() == null) {
-            dao.salvar(clienteAtual); // Usa persist
-            JOptionPane.showMessageDialog(this, "Cadastrado com sucesso!");
-        } else {
-            dao.atualizar(clienteAtual); // Usa merge
-            JOptionPane.showMessageDialog(this, "Alterado com sucesso!");
+        // 3. Salva ou Atualiza
+        ClienteDAO dao = new ClienteDAO();
+        try {
+            if (clienteAtual.getId() == null) {
+                dao.salvar(clienteAtual); // Usa persist
+                JOptionPane.showMessageDialog(this, "Cadastrado com sucesso!");
+            } else {
+                dao.atualizar(clienteAtual); // Usa merge
+                JOptionPane.showMessageDialog(this, "Alterado com sucesso!");
+            }
+
+            limparCampos();
+            clienteAtual = null; // Reseta para o próximo não vir como edição
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao salvar: " + e.getMessage());
         }
-        
-        limparCampos();
-        clienteAtual = null; // Reseta para o próximo não vir como edição
-        
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Erro ao salvar: " + e.getMessage());
-    }
-        
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+        Dashboard.MainDashboard.mostrarLista();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        // 1. Chama o método que limpa os textos dos campos
+        limparCampos();
+
+        // 2. MUITO IMPORTANTE: Reseta a variável de controle
+        // Isso evita que o sistema tente atualizar o ID do cliente anterior
+        this.clienteAtual = null;
+
+        // 3. Opcional: Coloca o foco no primeiro campo
+        txtRazaoSocialNome.requestFocus();
+
+        // Feedback visual (opcional)
+        // System.out.println("Formulário resetado para novo cadastro.");
+    }//GEN-LAST:event_btnLimparActionPerformed
 
     public void prepararEdicao(Cliente c) {
         this.clienteAtual = c; // Guarda o cliente que veio da lista

@@ -36,6 +36,7 @@ Classes\ClienteDAO.class
 Content\TelaPedidos.class
 Dashboard\MainDashboard$4.class
 br\com\sistemarj\rjsistema\persistencia\JPAUtil.class
+Content\CadastroClientes$3.class
 Dashboard\MainDashboard.class
 Dashboard\MainDashboard$7.class
 Dashboard\MainDashboard$12.class

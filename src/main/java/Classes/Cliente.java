@@ -3,7 +3,6 @@ package Classes;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
-
 @Entity
 @Table(name = "cliente") // Nome exato da tabela no banco
 public class Cliente {
@@ -51,9 +50,9 @@ public class Cliente {
 
     @Column(name = "Email")
     private String email;
-    
-    @Column(name = "Observacao")
-    private String Observacao;
+
+    @Column(name = "observacao", columnDefinition = "TEXT")
+    private String observacao;
 
     public Long getId() {
         return id;
@@ -118,14 +117,12 @@ public class Cliente {
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
-    
-    public String getObservacao() {
-        return Observacao;
+
+    public String getObservacao() { 
+        return observacao; 
     }
-    
-    public void setObservacao(String bairro) {
-        this.Observacao = Observacao;
-    }
+
+    public void setObservacao(String observacao) { this.observacao = observacao; }
 
     public String getCidade() {
         return cidade;
@@ -175,5 +172,3 @@ public class Cliente {
         this.email = email;
     }
 }
-    
-

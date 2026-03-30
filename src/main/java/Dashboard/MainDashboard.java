@@ -78,7 +78,8 @@ public class MainDashboard extends javax.swing.JFrame {
     public MainDashboard() {
         initComponents();
         this.pack();
-        telaCadastro  = e;
+        telaCadastro = e; //puxa a tela CadastroClientes a partir da tela ListaClientes
+        telaLista = h;
 
         java.awt.Color corHover = new java.awt.Color(51, 51, 51); // Cinza Escuro
         java.awt.Color corPadrao = new java.awt.Color(30, 101, 165); // Volta cor normal
@@ -404,9 +405,19 @@ public class MainDashboard extends javax.swing.JFrame {
 
     // Transforme a variável 'e' em static para acessá-la de fora
     public static Content.CadastroClientes telaCadastro;
+    public static Content.ListaClientes telaLista;
 
-// No seu construtor ou init, onde você faz o main.add(e):
-    
+    //trecho pra esconder a tela CadastroClientes e mostrar a tela ListaClientes 
+    public static void mostrarLista() {
+        // Esconde a tela de cadastro
+        telaCadastro.setVisible(false);
+
+        // Mostra a tela de lista
+        telaLista.setVisible(true);
+
+        // Opcional: Força a atualização da tabela ao abrir
+        telaLista.atualizarTabela();
+    }
 
 // Crie este método para ser chamado pela Lista
     public static void exibirEdicao(Classes.Cliente cliente) {
