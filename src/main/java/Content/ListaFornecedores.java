@@ -2,15 +2,16 @@ package Content;
 
 import Classes.Fornecedor;
 import Classes.FornecedorDAO;
+import javax.swing.table.DefaultTableModel;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 public class ListaFornecedores extends javax.swing.JPanel {
-    
+
     public ListaFornecedores() {
         initComponents();
-        
+        atualizarTabela();
+
         for (int column = 0; column < tblFornecedor.getColumnCount(); column++) {
             int width = 100; // Tamanho mínimo
             for (int row = 0; row < tblFornecedor.getRowCount(); row++) {
@@ -20,10 +21,10 @@ public class ListaFornecedores extends javax.swing.JPanel {
             }
             tblFornecedor.getColumnModel().getColumn(column).setPreferredWidth(width);
         }
-        
+
     }
-    
-        public void atualizarTabela() {
+
+    public void atualizarTabela() {
 
         DefaultTableModel modelo = (DefaultTableModel) tblFornecedor.getModel();
         modelo.setNumRows(0); // LIMPA A TABELA ANTES DE REPREENCHER
@@ -58,7 +59,6 @@ public class ListaFornecedores extends javax.swing.JPanel {
         }
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -67,6 +67,12 @@ public class ListaFornecedores extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblFornecedor = new javax.swing.JTable();
         btnEditar = new javax.swing.JButton();
+
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -80,11 +86,7 @@ public class ListaFornecedores extends javax.swing.JPanel {
                 "ID", "Razão Social", "Nome Fantasia", "CNPJ", "Inscrição Estadual", "Rua", "Bairro", "Cidade", "Estado", "CEP", "Ramo Atividade", "Vendedor", "Contato", "Email", "Dados Bancários", "Observação", "Data Cadastro"
             }
         ));
-        tblFornecedor.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                tblFornecedorComponentShown(evt);
-            }
-        });
+        tblFornecedor.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane1.setViewportView(tblFornecedor);
 
         btnEditar.setText("Editar");
@@ -108,7 +110,7 @@ public class ListaFornecedores extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnEditar)
-                .addGap(90, 90, 90))
+                .addGap(89, 89, 89))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,10 +118,10 @@ public class ListaFornecedores extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnEditar)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -146,9 +148,9 @@ public class ListaFornecedores extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void tblFornecedorComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tblFornecedorComponentShown
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         atualizarTabela();
-    }//GEN-LAST:event_tblFornecedorComponentShown
+    }//GEN-LAST:event_formComponentShown
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

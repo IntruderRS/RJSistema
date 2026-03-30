@@ -80,7 +80,8 @@ public class MainDashboard extends javax.swing.JFrame {
         initComponents();
         this.pack();
         telaCadastro = e; //puxa a tela CadastroClientes a partir da tela ListaClientes
-        CadastrosFornecedores = c;//puxa a tela CadastroFornecedor a partir da tela ListaFornecedor
+        telaCadFornecedor = c;
+        telaListaFornecedor = f; ;//puxa a tela CadastroFornecedor a partir da tela ListaFornecedor
 
         java.awt.Color corHover = new java.awt.Color(51, 51, 51); // Cinza Escuro
         java.awt.Color corPadrao = new java.awt.Color(30, 101, 165); // Volta cor normal
@@ -407,23 +408,20 @@ public class MainDashboard extends javax.swing.JFrame {
     // Transforme a variável 'e' em static para acessá-la de fora
     public static Content.CadastroClientes telaCadastro;
     public static Content.ListaClientes telaLista;
-    public static Content.CadastrosFornecedores CadastrosFornecedores;
-    public static Content.ListaFornecedores ListaFornecedores;
+    public static Content.CadastrosFornecedores telaCadFornecedor;
+    public static Content.ListaFornecedores telaListaFornecedor;
     
 
     //trecho pra esconder a tela CadastroClientes e mostrar a tela ListaClientes 
     public static void mostrarLista() {
         // Esconde a tela de cadastro
         telaCadastro.setVisible(false);
-        CadastrosFornecedores.setVisible(false);
 
         // Mostra a tela de lista
         telaLista.setVisible(true);
-        CadastrosFornecedores.setVisible(true);
 
         // Opcional: Força a atualização da tabela ao abrir
         telaLista.atualizarTabela();
-        ListaFornecedores.atualizarTabela();
     }
 
 // Crie este método para ser chamado pela Lista
@@ -439,16 +437,27 @@ public class MainDashboard extends javax.swing.JFrame {
 
     }
     
+     public static void mostrarListaFornecedores() {
+    // 1. Esconde o cadastro de fornecedores (letra c)
+    telaCadFornecedor.setVisible(false);
+    
+    // 2. Mostra a lista de fornecedores (letra f)
+    telaListaFornecedor.setVisible(true);
+    
+    // 3. Força a atualização dos dados na tabela
+    telaListaFornecedor.atualizarTabela();
+}
+     
     public static void exibirEdicaoFornecedor(Classes.Fornecedor fornecedor) {
         // 1. Esconde todas as outras (ou chama seu método de limpar tela)
         // Ex: esconderTodas(); 
 
         // 2. Preenche os dados na tela que já existe
 
-        CadastrosFornecedores.prepararEdicao(fornecedor);
+        telaCadFornecedor.prepararEdicao(fornecedor);
 
         // 3. Mostra apenas ela
-        CadastrosFornecedores.setVisible(true);
+        telaCadFornecedor.setVisible(true);
     }
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
