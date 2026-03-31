@@ -1,28 +1,45 @@
 package Content;
 
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class CadastroCategoria extends javax.swing.JPanel {
-    
-    private Classes.Categoria categoriaAtual;
 
+    private Classes.Categoria categoriaAtual;
+    
+    private TableRowSorter<TableModel> sorter;
 
     public CadastroCategoria() {
         initComponents();
+        atualizarTabela();
+
+        TableModel modelo = tblCategorias.getModel();
+        sorter = new TableRowSorter<>(modelo);
+        tblCategorias.setRowSorter(sorter);
     }
-    
+
     private void limparCampos() {
-    txtID.setText("");
+         txtID.setText("");
     txtCategoria.setText("");
-    categoriaAtual = null; // Importante para não sobrescrever a anterior
-    txtCategoria.requestFocus();
-}
     
+    // ESTA LINHA TIRA O FILTRO E MOSTRA TUDO DE NOVO
+    if (sorter != null) {
+        sorter.setRowFilter(null);
+    }
+
+    categoriaAtual = null;
+    txtCategoria.requestFocus();
+    }
+
     public void prepararEdicao(Classes.Categoria c) {
-    this.categoriaAtual = c;
-    txtID.setText(String.valueOf(c.getId()));
-    txtCategoria.setText(c.getNome());
-}
+        this.categoriaAtual = c;
+        txtID.setText(String.valueOf(c.getId()));
+        txtCategoria.setText(c.getNome());
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -34,11 +51,10 @@ public class CadastroCategoria extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtCategoria = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        btnBuscar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCategorias = new javax.swing.JTable();
 
         setForeground(new java.awt.Color(205, 205, 205));
 
@@ -52,7 +68,11 @@ public class CadastroCategoria extends javax.swing.JPanel {
 
         jLabel4.setText("Categoria:");
 
-        btnBuscar.setText("Buscar");
+        txtCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCategoriaKeyReleased(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -73,9 +93,7 @@ public class CadastroCategoria extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(btnBuscar)
-                .addGap(125, 125, 125)
+                .addGap(194, 194, 194)
                 .addComponent(btnLimpar)
                 .addGap(117, 117, 117)
                 .addComponent(btnSalvar)
@@ -84,26 +102,24 @@ public class CadastroCategoria extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
-                    .addComponent(btnLimpar)
-                    .addComponent(btnBuscar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnLimpar))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCategorias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Title 2"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblCategorias);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -155,45 +171,90 @@ public class CadastroCategoria extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
+
         try {
-        // 1. Verifica se é novo ou edição
-        if (categoriaAtual == null) {
-            categoriaAtual = new Classes.Categoria();
+            // 1. Verifica se é novo ou edição
+            if (categoriaAtual == null) {
+                categoriaAtual = new Classes.Categoria();
+            }
+
+            // 2. Validação simples: não deixa salvar vazio
+            if (txtCategoria.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Informe o nome da categoria!");
+                return;
+            }
+
+            // 3. Pega o nome do campo
+            categoriaAtual.setNome(txtCategoria.getText());
+
+            // 4. Chama o DAO para salvar
+            Classes.CategoriaDAO dao = new Classes.CategoriaDAO();
+            dao.salvar(categoriaAtual);
+
+            JOptionPane.showMessageDialog(this, "Categoria salva com sucesso!");
+
+            // 5. Limpa e reseta
+            limparCampos();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao salvar categoria: " + e.getMessage());
+            e.printStackTrace();
         }
-
-        // 2. Validação simples: não deixa salvar vazio
-        if (txtCategoria.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Informe o nome da categoria!");
-            return;
-        }
-
-        // 3. Pega o nome do campo
-        categoriaAtual.setNome(txtCategoria.getText());
-
-        // 4. Chama o DAO para salvar
-        Classes.CategoriaDAO dao = new Classes.CategoriaDAO();
-        dao.salvar(categoriaAtual);
-
-        JOptionPane.showMessageDialog(this, "Categoria salva com sucesso!");
-        
-        // 5. Limpa e reseta
         limparCampos();
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Erro ao salvar categoria: " + e.getMessage());
-        e.printStackTrace();
-    }
-        
+        atualizarTabela();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-         limparCampos();
+        limparCampos();
     }//GEN-LAST:event_btnLimparActionPerformed
 
+    private void txtCategoriaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCategoriaKeyReleased
+        String texto = txtCategoria.getText();
+    
+    if (texto.trim().length() == 0) {
+        sorter.setRowFilter(null); // Mostra tudo se estiver vazio
+    } else {
+        // O "(?i)" faz a busca ignorar maiúsculas e minúsculas
+        // O índice 1 refere-se à coluna "Nome" (0=ID, 1=Nome)
+        sorter.setRowFilter(RowFilter.regexFilter("(?i)" + texto, 1));
+    }
+    }//GEN-LAST:event_txtCategoriaKeyReleased
+
+    private void tblCategoriasMouseClicked(java.awt.event.MouseEvent evt) {
+        // 1. Descobrir qual linha foi clicada
+        int linha = tblCategorias.getSelectedRow();
+
+        if (linha != -1) {
+            // 2. Pegar o ID da primeira coluna (índice 0)
+            Long id = Long.valueOf(tblCategorias.getValueAt(linha, 0).toString());
+
+            // 3. Buscar a categoria completa no banco para garantir os dados
+            Classes.CategoriaDAO dao = new Classes.CategoriaDAO();
+            Classes.Categoria selecionada = dao.buscarPorId(id);
+
+            if (selecionada != null) {
+                // 4. Preencher os campos da tela (txtID e txtCategoria)
+                prepararEdicao(selecionada);
+            }
+        }
+    }
+
+    public void atualizarTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) tblCategorias.getModel();
+        modelo.setNumRows(0); // Limpa para não duplicar
+
+        Classes.CategoriaDAO dao = new Classes.CategoriaDAO();
+        List<Classes.Categoria> lista = dao.listarTodos();
+
+        for (Classes.Categoria c : lista) {
+            modelo.addRow(new Object[]{
+                c.getId(),
+                c.getNome()
+            });
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;
@@ -201,7 +262,7 @@ public class CadastroCategoria extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblCategorias;
     private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
