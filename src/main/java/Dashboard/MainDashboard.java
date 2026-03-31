@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainDashboard extends javax.swing.JFrame {
+    
+    public static Content.ListaClientes telaListaClientes;
 
     TelaHome a = new TelaHome();
     TelaPedidos b = new TelaPedidos();
@@ -79,11 +81,13 @@ public class MainDashboard extends javax.swing.JFrame {
     public MainDashboard() {
         initComponents();
         this.pack();
+        telaListaClientes = h; 
         telaCadastro = e; //puxa a tela CadastroClientes a partir da tela ListaClientes
         telaCadFornecedor = c;
-        telaListaFornecedor = f;;//puxa a tela CadastroFornecedor a partir da tela ListaFornecedor
+        telaListaFornecedor = f;//puxa a tela CadastroFornecedor a partir da tela ListaFornecedor
         telaCadProduto = d;
         telaListaProduto = g;
+        
 
         java.awt.Color corHover = new java.awt.Color(51, 51, 51); // Cinza Escuro
         java.awt.Color corPadrao = new java.awt.Color(30, 101, 165); // Volta cor normal
@@ -667,6 +671,19 @@ public class MainDashboard extends javax.swing.JFrame {
         btnHome.setBackground(new java.awt.Color(30, 101, 165));
     }//GEN-LAST:event_btnHomeMouseExited
 
+    public static void mostrarListaClientes() {
+    // 1. Esconde a tela de cadastro (que é a letra e)
+    telaCadastro.setVisible(false); 
+    
+    // 2. Mostra a lista de clientes (letra h)
+    if (telaListaClientes != null) {
+        telaListaClientes.setVisible(true);
+        telaListaClientes.atualizarTabela(); // Garante que os dados apareçam
+    } else {
+        System.out.println("Erro: telaListaClientes não foi inicializada!");
+    }
+}
+    
     private void configurarEfeitoBotao(javax.swing.JComponent componente, java.awt.Color corEntrada, java.awt.Color corSaida) {
         componente.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
