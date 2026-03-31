@@ -52,6 +52,7 @@ public class ListaProdutos extends javax.swing.JPanel {
                 p.getPeso(),
                 p.getPorcetagemLucro(),
                 p.getValorCusto(),
+                p.getObservacao(),
                 });                            
         }
     }
@@ -80,13 +81,18 @@ public class ListaProdutos extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Nome", "Categoria", "Fornecedor", "Quantidade", "Valor Venda", "Vencimento", "Código de Barras", "Dimensoes", "Lote", "NCM", "Peso", "Porcentagem Lucro", "Valor Custo"
+                "ID", "Nome", "Categoria", "Fornecedor", "Quantidade", "Valor Venda", "Vencimento", "Código de Barras", "Dimensoes", "Lote", "NCM", "Peso", "Porcentagem Lucro", "Valor Custo", "Observação"
             }
         ));
         tblProdutos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane1.setViewportView(tblProdutos);
 
         jButton1.setText("Editar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -120,6 +126,35 @@ public class ListaProdutos extends javax.swing.JPanel {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         atualizarTabela();
     }//GEN-LAST:event_formComponentShown
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int linha = tblProdutos.getSelectedRow(); // Verifique o nome da sua tabela
+
+    if (linha != -1) {
+        try {
+            // 1. Pega o ID da primeira coluna (índice 0)
+            Long id = Long.valueOf(tblProdutos.getValueAt(linha, 0).toString());
+
+            // 2. Busca o produto completo no banco
+            ProdutoDAO dao = new ProdutoDAO();
+            Classes.Produto selecionado = dao.buscarPorId(id);
+
+            if (selecionado != null) {
+                // 3. CHAMA O DASHBOARD PARA TROCAR A TELA
+                // Aqui usamos o método que criamos para o Cadastro de Produtos
+                Dashboard.MainDashboard.exibirEdicaoProduto(selecionado);
+                
+                // Esconde a lista atual
+                this.setVisible(false);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar produto: " + e.getMessage());
+            e.printStackTrace();
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor, selecione um produto na tabela.");
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -2,9 +2,11 @@ package Classes;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "categoria") // Nome da tabela no MySQL
 public class Categoria {
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

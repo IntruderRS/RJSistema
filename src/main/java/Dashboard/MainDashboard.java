@@ -82,8 +82,8 @@ public class MainDashboard extends javax.swing.JFrame {
         telaCadastro = e; //puxa a tela CadastroClientes a partir da tela ListaClientes
         telaCadFornecedor = c;
         telaListaFornecedor = f;;//puxa a tela CadastroFornecedor a partir da tela ListaFornecedor
-        //telaCadProduto = d;
-        //telaListaProduto = g;
+        telaCadProduto = d;
+        telaListaProduto = g;
 
         java.awt.Color corHover = new java.awt.Color(51, 51, 51); // Cinza Escuro
         java.awt.Color corPadrao = new java.awt.Color(30, 101, 165); // Volta cor normal

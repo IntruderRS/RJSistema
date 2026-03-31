@@ -30,7 +30,6 @@ public class CadastroProdutos extends javax.swing.JPanel {
         txtValorVenda.setText("");
         txtVencimento.setText("");
         txtObservacao.setText("");
-        
 
         txtNome.requestFocus(); // Coloca o cursor de volta no primeiro campo
     }
@@ -77,6 +76,11 @@ public class CadastroProdutos extends javax.swing.JPanel {
         cbCategoria = new javax.swing.JComboBox<>();
 
         setForeground(new java.awt.Color(205, 205, 205));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -303,7 +307,6 @@ public class CadastroProdutos extends javax.swing.JPanel {
             produtoAtual.setCodigoBarras(txtCodigoBarras.getText());
             produtoAtual.setDimensoes(txtDimensoes.getText());
             produtoAtual.setValorCusto(valorCustoLimpo);
-            produtoAtual.setNome(txtID.getText());
             produtoAtual.setLote(txtLote.getText());
             produtoAtual.setNCM(txtNCM.getText());
             produtoAtual.setPeso(pesoLimpo);
@@ -344,24 +347,30 @@ public class CadastroProdutos extends javax.swing.JPanel {
         Dashboard.MainDashboard.mostrarListaProdutos();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        carregarCombos();
+    }//GEN-LAST:event_formComponentShown
+
     private void carregarCombos() {
         // 1. Limpa os combos para não duplicar se o método for chamado de novo
         cbCategoria.removeAllItems();
         cbFornecedor.removeAllItems();
 
-        // 2. Busca e adiciona as Categorias
-        CategoriaDAO catDAO = new CategoriaDAO();
-        List<Categoria> listaCat = catDAO.listarTodos();
+        // Busca categorias atualizadas
+        List<Categoria> listaCat = new CategoriaDAO().listarTodos();
         for (Categoria c : listaCat) {
-            cbCategoria.addItem(c); // Adiciona o OBJETO Categoria
+            cbCategoria.addItem(c);
         }
 
-        // 3. Busca e adiciona os Fornecedores
-        FornecedorDAO fornDAO = new FornecedorDAO();
-        List<Fornecedor> listaForn = fornDAO.listarTodos();
+        // Busca fornecedores atualizados
+        List<Fornecedor> listaForn = new FornecedorDAO().listarTodos();
         for (Fornecedor f : listaForn) {
-            cbFornecedor.addItem(f); // Adiciona o OBJETO Fornecedor
+            cbFornecedor.addItem(f);
         }
+
+        // Deixa os campos em branco por padrão (opcional)
+        cbCategoria.setSelectedIndex(-1);
+        cbFornecedor.setSelectedIndex(-1);
     }
 
     public void prepararEdicao(Classes.Produto p) {

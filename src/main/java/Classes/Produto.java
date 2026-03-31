@@ -46,9 +46,6 @@ public class Produto {
     @Column(name = "NCM")
     private String NCM;
 
-    @Column(name = "CEP")
-    private String cep;
-
     @Column(name = "Lote")
     private String lote;
 
@@ -143,14 +140,7 @@ public class Produto {
         this.NCM = NCM;
     }
 
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
+    
     public String getLote() {
         return lote;
     }

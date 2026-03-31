@@ -1,10 +1,28 @@
 package Content;
 
+import javax.swing.JOptionPane;
+
 public class CadastroCategoria extends javax.swing.JPanel {
+    
+    private Classes.Categoria categoriaAtual;
+
 
     public CadastroCategoria() {
         initComponents();
     }
+    
+    private void limparCampos() {
+    txtID.setText("");
+    txtCategoria.setText("");
+    categoriaAtual = null; // Importante para não sobrescrever a anterior
+    txtCategoria.requestFocus();
+}
+    
+    public void prepararEdicao(Classes.Categoria c) {
+    this.categoriaAtual = c;
+    txtID.setText(String.valueOf(c.getId()));
+    txtCategoria.setText(c.getNome());
+}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -16,13 +34,15 @@ public class CadastroCategoria extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtCategoria = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        btnLimpar = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
 
         setForeground(new java.awt.Color(205, 205, 205));
 
         jLabel1.setText("ID:");
+
+        txtID.setEditable(false);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -30,11 +50,21 @@ public class CadastroCategoria extends javax.swing.JPanel {
 
         jLabel4.setText("Categoria:");
 
-        jButton3.setText("Pesquisar");
+        btnBuscar.setText("Buscar");
 
-        jButton2.setText("Limpar");
+        btnLimpar.setText("Limpar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Salvar");
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -42,11 +72,11 @@ public class CadastroCategoria extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(116, 116, 116)
-                .addComponent(jButton3)
+                .addComponent(btnBuscar)
                 .addGap(125, 125, 125)
-                .addComponent(jButton2)
+                .addComponent(btnLimpar)
                 .addGap(117, 117, 117)
-                .addComponent(jButton1)
+                .addComponent(btnSalvar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -54,9 +84,9 @@ public class CadastroCategoria extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnSalvar)
+                    .addComponent(btnLimpar)
+                    .addComponent(btnBuscar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -103,11 +133,48 @@ public class CadastroCategoria extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        
+        try {
+        // 1. Verifica se é novo ou edição
+        if (categoriaAtual == null) {
+            categoriaAtual = new Classes.Categoria();
+        }
+
+        // 2. Validação simples: não deixa salvar vazio
+        if (txtCategoria.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Informe o nome da categoria!");
+            return;
+        }
+
+        // 3. Pega o nome do campo
+        categoriaAtual.setNome(txtCategoria.getText());
+
+        // 4. Chama o DAO para salvar
+        Classes.CategoriaDAO dao = new Classes.CategoriaDAO();
+        dao.salvar(categoriaAtual);
+
+        JOptionPane.showMessageDialog(this, "Categoria salva com sucesso!");
+        
+        // 5. Limpa e reseta
+        limparCampos();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Erro ao salvar categoria: " + e.getMessage());
+        e.printStackTrace();
+    }
+        
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+         limparCampos();
+    }//GEN-LAST:event_btnLimparActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

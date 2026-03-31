@@ -1,3 +1,4 @@
+Content\CadastroCategoria$1.class
 Content\CadastroClientes.class
 Content\ListaClientes.class
 Content\ListaFornecedores$2.class
@@ -29,6 +30,7 @@ Dashboard\MainDashboard$9.class
 Content\CadastroProdutos.class
 Content\CadastrosFornecedores.class
 Content\TelaPedidos$1.class
+Content\ListaProdutos$2.class
 Content\ListaProdutos.class
 br\com\sistemarj\rjsistema\RJSistema.class
 Dashboard\MainDashboard$11.class
@@ -50,9 +52,11 @@ br\com\sistemarj\rjsistema\persistencia\JPAUtil.class
 Content\CadastroClientes$3.class
 Dashboard\MainDashboard.class
 Content\CadastrosFornecedores$1.class
+Content\CadastroProdutos$4.class
 Dashboard\MainDashboard$7.class
 Dashboard\MainDashboard$12.class
 Dashboard\MainDashboard$1.class
 Classes\Produto.class
 Classes\Cliente.class
+Content\CadastroCategoria$2.class
 Content\ListaPedidos.class
