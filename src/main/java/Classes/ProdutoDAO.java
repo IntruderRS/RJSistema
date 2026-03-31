@@ -28,4 +28,18 @@ public class ProdutoDAO {
         try { return em.find(Produto.class, id); }
         finally { em.close(); }
     }
+    
+    public void atualizar(Produto produto) {
+    EntityManager em = JPAUtil.getEntityManager();
+    try {
+        em.getTransaction().begin();
+        em.merge(produto); // O merge identifica o ID e faz o UPDATE no banco
+        em.getTransaction().commit();
+    } catch (Exception e) {
+        em.getTransaction().rollback();
+        e.printStackTrace();
+    } finally {
+        em.close();
+    }
+}
 }

@@ -1,6 +1,6 @@
 package Dashboard;
 
-import Classes.Fornecedor;
+//import Classes.*;
 import Content.*;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
@@ -81,9 +81,9 @@ public class MainDashboard extends javax.swing.JFrame {
         this.pack();
         telaCadastro = e; //puxa a tela CadastroClientes a partir da tela ListaClientes
         telaCadFornecedor = c;
-        telaListaFornecedor = f; ;//puxa a tela CadastroFornecedor a partir da tela ListaFornecedor
-        telaCadProduto = d; 
-        telaListaProduto = g;
+        telaListaFornecedor = f;;//puxa a tela CadastroFornecedor a partir da tela ListaFornecedor
+        //telaCadProduto = d;
+        //telaListaProduto = g;
 
         java.awt.Color corHover = new java.awt.Color(51, 51, 51); // Cinza Escuro
         java.awt.Color corPadrao = new java.awt.Color(30, 101, 165); // Volta cor normal
@@ -414,13 +414,23 @@ public class MainDashboard extends javax.swing.JFrame {
     public static Content.ListaFornecedores telaListaFornecedor;
     public static Content.CadastroProdutos telaCadProduto;
     public static Content.ListaProdutos telaListaProduto;
-    
+
     public static void mostrarListaProdutos() {
-    telaCadProduto.setVisible(false);
-    telaListaProduto.setVisible(true);
-    telaListaProduto.atualizarTabela();
-}
-    
+        telaCadProduto.setVisible(false);
+        telaListaProduto.setVisible(true);
+        telaListaProduto.atualizarTabela();
+    }
+
+    public static void exibirEdicaoProduto(Classes.Produto produto) {
+         //1. Esconde a lista (letra g)
+        telaListaProduto.setVisible(false);
+
+        // 2. Prepara os dados na tela de cadastro (letra d)
+        telaCadProduto.prepararEdicao(produto);
+
+        // 3. Mostra o cadastro
+        telaCadProduto.setVisible(true);
+    }
 
     //trecho pra esconder a tela CadastroClientes e mostrar a tela ListaClientes 
     public static void mostrarLista() {
@@ -446,24 +456,23 @@ public class MainDashboard extends javax.swing.JFrame {
         telaCadastro.setVisible(true);
 
     }
-    
-     public static void mostrarListaFornecedores() {
-    // 1. Esconde o cadastro de fornecedores (letra c)
-    telaCadFornecedor.setVisible(false);
-    
-    // 2. Mostra a lista de fornecedores (letra f)
-    telaListaFornecedor.setVisible(true);
-    
-    // 3. Força a atualização dos dados na tabela
-    telaListaFornecedor.atualizarTabela();
-}
-     
+
+    public static void mostrarListaFornecedores() {
+        // 1. Esconde o cadastro de fornecedores (letra c)
+        telaCadFornecedor.setVisible(false);
+
+        // 2. Mostra a lista de fornecedores (letra f)
+        telaListaFornecedor.setVisible(true);
+
+        // 3. Força a atualização dos dados na tabela
+        telaListaFornecedor.atualizarTabela();
+    }
+
     public static void exibirEdicaoFornecedor(Classes.Fornecedor fornecedor) {
         // 1. Esconde todas as outras (ou chama seu método de limpar tela)
         // Ex: esconderTodas(); 
 
         // 2. Preenche os dados na tela que já existe
-
         telaCadFornecedor.prepararEdicao(fornecedor);
 
         // 3. Mostra apenas ela

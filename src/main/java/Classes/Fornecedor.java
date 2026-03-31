@@ -9,9 +9,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
     @Entity
-    @Table(name = "fornecedor") // Nome exato da tabela no banco
+    @Table(name = "fornecedor")
 
 public class Fornecedor {
+        
+        @Override
+public String toString() {
+    return this.nomeFantasia; 
+}
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

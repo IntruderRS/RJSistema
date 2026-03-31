@@ -1,34 +1,41 @@
 package Classes;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity  // <-- ESSA ANOTAÇÃO É OBRIGATÓRIA
+@Table(name = "produtos")
 
 public class Produto {
-    
-     @Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id_Produto")
     private Long id;
-     
-     
+
     @Column(name = "Nome")
     private String nome;
 
     @Column(name = "ValorCusto")
-    private String valorCusto;
+    private Double valorCusto;
 
     @Column(name = "PorcentagemLucro")
-    private String porcetagemLucro;
+    private Double porcetagemLucro;
 
     @Column(name = "ValorVenda")
-    private String valorVenda;
+    private Double valorVenda;
 
     @Column(name = "Quantidade")
-    private String quantidade;
+    private Integer quantidade;
 
     @Column(name = "Peso")
-    private String peso;
+    private Double peso;
 
     @Column(name = "Dimensoes")
     private String dimensoes;
@@ -47,15 +54,17 @@ public class Produto {
 
     @Column(name = "Vencimento")
     private String vencimento;
-    
+
     @Column(name = "observacao", columnDefinition = "TEXT")
     private String observacao;
 
-    @Column(name = "Categoria")
-    private String categoria;
+    @ManyToOne
+    @JoinColumn(name = "fk_Categoria") // Nome exato da coluna no MySQL
+    private Categoria categoria;
 
-    @Column(name = "Fornecedor")
-    private String fornecedor;
+    @ManyToOne
+    @JoinColumn(name = "fk_Fornecedor") // Nome exato da coluna no MySQL
+    private Fornecedor fornecedor;
 
     public Long getId() {
         return id;
@@ -73,44 +82,41 @@ public class Produto {
         this.nome = nome;
     }
 
-    public String getValorCusto() {
-        return valorCusto;
+    public Double getValorCusto() { 
+        return valorCusto; 
+    }
+    
+    public void setValorCusto(Double valorCusto) { 
+        this.valorCusto = valorCusto; 
     }
 
-    public void setValorCusto(String valorCusto) {
-        this.valorCusto = valorCusto;
+    public Double getPorcetagemLucro() { 
+        return porcetagemLucro; 
+    }
+    
+    public void setPorcetagemLucro(Double porcetagemLucro) { 
+        this.porcetagemLucro = porcetagemLucro; 
     }
 
-    public String getPorcetagemLucro() {
-        return porcetagemLucro;
+    public Double getValorVenda() { 
+        return valorVenda; }
+    
+    public void setValorVenda(Double valorVenda) { 
+        this.valorVenda = valorVenda; }
+
+    public Integer getQuantidade() { 
+        return quantidade; 
+    }
+    
+    public void setQuantidade(Integer quantidade) { 
+        this.quantidade = quantidade; 
     }
 
-    public void setPorcetagemLucro(String porcetagemLucro) {
-        this.porcetagemLucro = porcetagemLucro;
-    }
-
-    public String getValorVenda() {
-        return valorVenda;
-    }
-
-    public void setValorVenda(String valorVenda) {
-        this.valorVenda = valorVenda;
-    }
-
-    public String getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(String quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public String getPeso() {
-        return peso;
-    }
-
-    public void setPeso(String peso) {
-        this.peso = peso;
+    public Double getPeso() { 
+        return peso; }
+    
+    public void setPeso(Double peso) { 
+        this.peso = peso; 
     }
 
     public String getDimensoes() {
@@ -169,26 +175,20 @@ public class Produto {
         this.observacao = observacao;
     }
 
-    public String getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
-    public String getFornecedor() {
+    public Fornecedor getFornecedor() {
         return fornecedor;
     }
 
-    public void setFornecedor(String fornecedor) {
+    public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
     }
-    
-    
-    
-    }
 
-
-
-
+}

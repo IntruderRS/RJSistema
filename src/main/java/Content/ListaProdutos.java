@@ -1,14 +1,59 @@
-
 package Content;
 
 import Classes.Produto;
 import Classes.ProdutoDAO;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ListaProdutos extends javax.swing.JPanel {
 
     public ListaProdutos() {
         initComponents();
+        atualizarTabela();
+
+        for (int column = 0; column < tblProdutos.getColumnCount(); column++) {
+            int width = 100; // Tamanho mínimo
+            for (int row = 0; row < tblProdutos.getRowCount(); row++) {
+                javax.swing.table.TableCellRenderer renderer = tblProdutos.getCellRenderer(row, column);
+                java.awt.Component comp = tblProdutos.prepareRenderer(renderer, row, column);
+                width = Math.max(comp.getPreferredSize().width + 1, width);
+            }
+            tblProdutos.getColumnModel().getColumn(column).setPreferredWidth(width);
+        }
+
+    }
+
+    public void atualizarTabela() {
+
+        DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
+        modelo.setNumRows(0); // LIMPA A TABELA ANTES DE REPREENCHER
+
+        ProdutoDAO dao = new ProdutoDAO();
+        List<Produto> lista = dao.listarTodos();
+
+        // Limpa a tabela antes de preencher para não duplicar dados
+        modelo.setNumRows(0);
+
+        // Adiciona cada cliente na linha da tabela
+        for (Produto p : lista) {
+            modelo.addRow(new Object[]{
+                p.getId(),
+                p.getNome(),
+                p.getCategoria(),
+                p.getFornecedor(),
+                p.getQuantidade(),
+                p.getValorVenda(),
+                p.getVencimento(),
+                p.getCodigoBarras(),
+                p.getDimensoes(),
+                p.getLote(),
+                p.getNCM(),
+                p.getPeso(),
+                p.getPorcetagemLucro(),
+                p.getValorCusto(),
+                });                            
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -17,7 +62,8 @@ public class ListaProdutos extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblFornecedor = new javax.swing.JTable();
+        tblProdutos = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -29,15 +75,18 @@ public class ListaProdutos extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LISTA PRODUTOS");
 
-        tblFornecedor.setModel(new javax.swing.table.DefaultTableModel(
+        tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "Categoria", "Fornecedor", "Quantidade", "Valor Venda", "Vencimento"
+                "ID", "Nome", "Categoria", "Fornecedor", "Quantidade", "Valor Venda", "Vencimento", "Código de Barras", "Dimensoes", "Lote", "NCM", "Peso", "Porcentagem Lucro", "Valor Custo"
             }
         ));
-        jScrollPane1.setViewportView(tblFornecedor);
+        tblProdutos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jScrollPane1.setViewportView(tblProdutos);
+
+        jButton1.setText("Editar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -50,6 +99,10 @@ public class ListaProdutos extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 858, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(125, 125, 125))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -57,8 +110,10 @@ public class ListaProdutos extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -66,21 +121,11 @@ public class ListaProdutos extends javax.swing.JPanel {
         atualizarTabela();
     }//GEN-LAST:event_formComponentShown
 
-    public void atualizarTabela() {
-    DefaultTableModel modelo = (DefaultTableModel) tblFornecedor.getModel();
-    modelo.setNumRows(0);
-    
-    ProdutoDAO dao = new ProdutoDAO();
-    for (Produto p : dao.listarTodos()) {
-        modelo.addRow(new Object[]{
-            p.getId(), p.getNome(), p.getValorCusto(), p.getValorVenda()
-        });
-    }
-}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblFornecedor;
+    private javax.swing.JTable tblProdutos;
     // End of variables declaration//GEN-END:variables
 }

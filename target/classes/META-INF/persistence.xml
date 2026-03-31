@@ -7,6 +7,9 @@
     <persistence-unit name="RJSistema-PU" transaction-type="RESOURCE_LOCAL">
          <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
          <class>Classes.Cliente</class>
+         <class>Classes.Produto</class>
+         <class>Classes.Categoria</class>
+         <class>Classes.Fornecedor</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/rj_bd" />
